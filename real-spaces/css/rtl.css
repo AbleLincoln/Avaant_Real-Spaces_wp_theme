@@ -1,0 +1,294 @@
+/* Stylesheet for RTL languages */
+body{
+	direction: rtl;
+	unicode-bidi: embed;
+}
+.align-left{
+	float:right;
+}
+.align-right{
+	float:left;
+}
+.text-align-left {
+	text-align: right;
+}
+.text-align-center {
+	text-align: center;
+}
+.text-align-right {
+	text-align: left;	
+}
+blockquote{
+	padding:0 30px 0 0;
+	border-right:3px solid;
+	border-left:0;
+}
+p.drop-caps:first-child:first-letter {
+    margin-left: 5px;
+}
+p.drop-caps.secondary:first-child:first-letter {
+    margin-left: 10px;
+}
+ul.checks > li > i, ul.angles > li > i, ul.carets > li > i, ul.chevrons > li > i{
+	margin-left:2px;
+}
+ul.inline > li{
+	margin-left:10px;
+}
+ul.inline > li i.fa{
+	margin-left:2px;
+}
+ul.unordered{
+	margin:10px 20px 10px 0;
+}
+ol{
+	margin:10px 30px 10px 0;
+}
+ul.unordered ul, ol ul{
+	margin:10px 20px 10px 0;
+}
+address.ico i{
+	float: right;
+}
+address.ico span{
+	padding-right:20px;
+}
+/* ----------------------------------------------------------------------------------------- */
+/* Multi purpose classes */
+/* ----------------------------------------------------------------------------------------- */
+.owl-carousel .owl-item{
+	float: right;
+}
+.owl-carousel .item{
+	margin-left:15px;
+	margin-right:15px;
+}
+.meta-data > span{
+	margin-left:20px;
+	margin-right:0;
+}
+.meta-data i{
+	margin-left:4px;
+	margin-right:0;
+}
+.meta-data > span:last-child{
+	margin-left:0;
+	margin-right:0;
+}
+.media-box .zoom, .media-box .expand{
+	right:0;
+	left:auto;
+}
+.pull-right{
+	float:left!important;
+}
+.pull-left{
+	float:right!important;
+}
+.top-menus li:first-child a{
+	border-right:1px solid rgba(0,0,0,.1);
+	border-left:0;
+}
+/* Back to Top Button */
+#back-to-top{
+	left:17px;
+	right:auto;
+}
+.nav-tabs li{
+	float:right;
+	margin-left:1px;
+}
+.accordion-heading.accordionize .accordion-toggle i,
+.accordion-heading.togglize .accordion-toggle i {
+    left: 20px;
+	right:auto;
+}
+.alert {
+  	padding: 15px 15px 15px 35px;
+}
+.alert .close {
+  	left: -22px;
+	right:auto;
+}
+span.progress-bar-tooltip {
+	top: -28px;
+	left: 5px;
+	right:auto;
+}
+span.progress-bar-tooltip:after {
+	right: 13px;
+	left:auto;
+}
+/* Stying template */
+.contact-info-blocks{
+	text-align:left;
+}
+.contact-info-blocks > div{
+	text-align:right;
+}
+.contact-info-blocks > div:last-child{
+	padding-left:0;
+	padding-right:20px;
+	border-right:1px solid #efefef;
+}
+.contact-info-blocks > div:first-child{
+	border-right:0;
+}
+.navigation > ul > li > ul li ul{
+	right:100%!important;
+	left:auto!important;
+}
+.block-heading .btn-sm{
+	margin-left:17px;
+	margin-right:0;
+}
+.block-heading h4 {
+    padding-left: 20px;
+	padding-right:0;
+    border-radius: 0 3px 3px 0;
+}
+.block-heading .heading-icon {
+    margin-left: 20px;
+	margin-right:0;
+    border-radius: 0 3px 3px 0;
+}
+.block-heading .heading-icon .icon-design{
+	left:-7px;
+	right:auto;
+}
+.owl-alt-controls.owl-theme .owl-controls .owl-buttons div.owl-prev{
+	left:61px;
+	right:auto;
+}
+.owl-alt-controls.owl-theme .owl-controls .owl-buttons div.owl-next{
+	left:27px;
+	right:auto;
+}
+.site-footer-bottom .social-icons{
+	text-align:left;
+}
+.site-footer-bottom .social-icons a{
+	margin:0 8px 0 0;
+}
+.property-listing .property-amenities strong{
+	margin-right:0;
+	margin-left:5px;
+}
+.property-listing .property-info .price, .agents-listing .agent-info .counts{
+	float:left;
+}
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+	float:right;
+	margin-left:10px;
+	margin-right:0;
+}
+.properties-table .action-button{
+	float:right;
+}
+.pricing-column h4{
+	padding-right:0;
+	padding-left:30px;
+}
+.pricing-column h4 .dollar-sign{
+	left:-6px;
+	right:auto;
+}
+.nav-tabs > li > a{
+	border-radius:0;
+}
+a.pp_arrow_previous, a.pp_arrow_next, .pp_nav .pp_play, .pp_nav .pp_pause, a.pp_close, a.pp_previous, a.pp_next, div.pp_default .pp_expand{
+	text-indent:10000px;
+}
+div.pp_default .pp_content_container .pp_right{
+	padding-right:0;
+}
+.pp_content_container .pp_right{
+	padding-right:20px!important;
+}
+.grid-content .meta-data > span{
+	padding-right:0;
+	padding-left:0;
+	border:0;
+}
+.post-content .meta-data > span{
+	padding-left:0;
+}
+.post-content .meta-data > span:first-child{
+	border-right:0;
+}
+.post-content .meta-data > span:last-child{
+	border-right:1px solid #efefef;
+}
+.flexslider .flex-control-nav{
+	right:0;
+	left:auto;
+}
+.hero-slider.flexslider .flex-prev, .hero-slider.flexslider .flex-next{
+	left:-40px;
+	right:auto;
+}
+.hero-slider.flexslider .flex-prev{
+	left:auto;
+	right:-40px;
+}
+.hero-slider.flexslider:hover .flex-prev{
+	left:auto;
+	right:20px;
+	-webkit-transition: right .3s .2s;
+	-moz-transition: right .3s .2s;
+	-ms-transition: right .3s .2s;
+	-o-transition: right .3s .2s;
+	transition: right .3s .2s;
+}
+.hero-slider.flexslider:hover .flex-next{
+	right:auto;
+	left:20px;
+	-webkit-transition: left .3s .2s;
+	-moz-transition: left .3s .2s;
+	-ms-transition: left .3s .2s;
+	-o-transition: left .3s .2s;
+	transition: left .3s .2s;
+}
+.flexslider .flex-prev:before{
+  content: "\f105";
+}
+.flexslider .flex-next:before{
+  content: "\f104";
+}
+@media only screen and (max-width: 992px) {
+	
+}
+@media only screen and (max-width: 767px) {
+	
+}
+.nav-pills > li{
+	float:right;
+}
+.pager li{
+	float:left;
+}
+.isotope-item {
+  -webkit-transition-property: right, top, -webkit-transform, opacity;
+     -moz-transition-property: right, top, -moz-transform, opacity;
+      -ms-transition-property: right, top, -ms-transform, opacity;
+       -o-transition-property: right, top, -o-transform, opacity;
+          transition-property: right, top, transform, opacity;
+}
+.fa-chevron-left,
+.fa-chevron-right,
+.fa-angle-double-left,
+.fa-angle-double-right,
+.fa-angle-left,
+.fa-angle-right,
+.sf-menu .fa-caret-right,
+.block-heading .heading-icon .icon-design {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.flex-viewport{
+	direction:ltr;
+}

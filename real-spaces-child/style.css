@@ -1,0 +1,136 @@
+/*
+
+ Theme Name:     Real-Spaces Child Theme
+
+ Theme URI:      http://preview.imithemes.com/real-spaces-wp/
+
+ Description:    Real-Spaces Child Theme
+
+ Author:         imithemes
+
+ Author URI:     http://www.imithemes.com
+
+ Template:       real-spaces
+
+ Version:        1.0.0
+
+*/
+
+
+
+@import url(../real-spaces/style.css);
+
+
+
+/* =Theme customization starts here
+
+------------------------------------------------------- */
+/*General*/
+
+.avaant-hidden, #additionalinfo, .navailable, .middle-header, .badges, .images-count {
+    display: none!important;
+}
+
+.item, .type-rent {
+    border: 1px solid rgb(200, 200, 255);
+    
+}
+
+@media (min-width: 1350px) {
+ .container {
+    width: 1250px;
+ }
+}
+
+/*Header*/
+
+.main-menu-wrapper > .container {
+  margin: 0;
+}
+
+.top-header > .container {
+  margin-right: 0;
+}
+
+.horiz-nav {
+  padding-right: 14px;
+}
+
+.horiz-nav .dropdown-menu {
+  min-width: 130px;
+}
+
+.horiz-nav .dropdown-menu > li > a {
+  padding: 3px 10px;
+}
+
+/*Project Page*/
+
+.single-property {
+  padding-bottom: 45px;
+}
+
+.avnt-project {
+  padding: 35px 0;
+}
+
+.avnt-project h3 {
+  margin-bottom: 4px;
+  line-height: 1em;
+  font-size: 20px;
+}
+
+.avnt-box {
+  border-top: 2px solid #3F5765;
+  border-bottom: 2px solid #3F5765;
+}
+
+.avnt-title-bar.avnt-box {
+  border-top: 0px;
+}
+
+.avnt-project-details .avnt-box {
+  min-height: 100px;
+}
+
+.avnt-seeking .avnt-box {
+  padding-top: 5px;
+}
+
+span.available {
+  display: block;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.social-buttons {
+  padding: 8px 0px;
+}
+
+.share-bar {
+  margin: 0 0;
+}
+
+ul.share-buttons {
+  margin-left: 86px;
+}
+
+.share-buttons > li {
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.share-buttons > li > a {
+  border-radius: 4px;
+  width: 42px;
+  height: 39px;
+}
+
+.share-buttons i {
+  font-size: 20px;
+  margin-top: 9px;
+}
+
+.avnt-project .right-sidebar {
+  margin-top: 24px;
+}

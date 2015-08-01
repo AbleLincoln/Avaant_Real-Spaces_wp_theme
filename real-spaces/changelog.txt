@@ -1,0 +1,133 @@
+*** Real Spaces Change log ***
+- Version 1.0 - 19 July, 2014
+	
+	* First Release
+- Version 1.0.1 - 29 July, 2014
+	*  Countries and city/states list updated
+- Version 1.1 - 9 August, 2014
+	
+	* Option to choose user type at Register page
+	* Add to favourite option for properties
+	* Save search for future reference
+	* Enable/Disable search form fields for home page search form
+	* Email notification to users when they add property to favourites
+	* Agent contact form on single property page for easy enquiry
+	* Removed image dimension restriction from add property page
+	* Removed image dimension restriction from agent profile page
+	* Modal popup box on add property page after submission
+	* Changed wording draft to pending review on agent properties page 
+	* Agent details editing for admin from wp-admin
+	* Added option to search property by property id, postal code, address
+	* Fixed! agent logged out after registering, now ill be logged in
+	* Fixed bug for zoom map on single property page
+	* Added Boxed version with patterns
+- v1.2 – September 11, 2014
+	NEW!Custom city and area option
+	NEW! Property comparison
+	NEW!Custom images/banners slider for homepage
+	NEW! Option to show/hide top bar login button, drop down
+	NEW! Option to add favicon at Theme Options
+	NEW! option to hide/show agent details on property page
+	NEW! Change header, footer backgrounds from Theme Options
+	NEW! 18 Layered PSD files added
+	NEW! Search filters on search results page
+	NEW! ability to make properties private
+	NEW! Option to choose multiple countries at Theme Options
+	NEW! Option to choose map zoom level for each property
+	NEW! Add custom amenities from theme options or manage default ones
+	UPDATED! now map will be set as default property banner
+	UPDATED! All search fields option added for search form widget with option to add/remove fields and drag drop positioning
+	UPDATED! Agent details can be edited from wp-admin as well
+	UPDATED! manage/add amenities to property from wp-admin
+	FIXED! Small styling issues
+	FIXED! Performance enhancement for smart phones
+	FIXED! Colombian Pesos currency symbol problem
+- v1.3 – November 15, 2014
+	NEW! Revolution Slider added for Homepage
+	NEW! Paid property listing with paypal payments
+	NEW! Option to set if the new added properties will be listed directly or saved as draft
+	NEW! Option to assign zoom level for map of each property
+	NEW! Ability to make a listing private
+	NEW! Administrator ability to change any property’s agent/author
+	NEW! Administrator ability to add/change any agent’s profile photo
+	NEW! Option to change property IDs wording
+	NEW! Option to hide property IDs from listing and grid
+	NEW! Ability to change agent’s name while quick editing any property
+	NEW! Option to choose RTL language support at Theme Options
+	NEW! Added 15 new pattern images for boxed layout
+	FIXED! Some style bugs on single property and home page
+	FIXED! problem while setting masonry layout blog page as posts page
+	FIXED! Property Details not showing dynamic Amenities
+	FIXED! Map not working on some servers
+- v1.3.0.1 – November 15, 2014
+	FIXED! dxIDXPress Plugin styling bugs
+- v1.3.0.2 – November 22, 2014
+	FIXED! Issue with assigning post thumbnails
+	FIXED! Bug with updating user profiles
+- v1.4 – December 30, 2015
+	FIXED! Home page search form responsive view bugs
+- v1.5 – January 20, 2015
+	NEW! Testimonial shortcode now allows to show testimonials as carousel
+	FIXED! Agent template pagination was not showing all agents.
+	NEW! Top Menu or login dropdown selection.
+	FIXED! removed static text in pricing tables
+	FIXED! Agent Template Profile template
+	FIXED! Profile for dealers not showing correct number of properties
+	FIXED! Agent’s recent properties permalink
+	IMPROVED! Home page search form
+	FIXED! Search result page showing no properties when no filter has any value selected
+	FIXED! No image for popular agent
+	FIXED! Yoast SEO fields not showing for pages.
+	IMPROVED! State and city fields list are now interconnected
+- v1.6 – February 03, 2015
+	FIXED! Styling bug when top user dropdown is disabled via Theme Options
+	UPDATED! functions.php file for some small bugs
+	ADDED! Jamaican and Pakistan currency at Theme Options currency selection field
+	UPDATED! Paid properties plugin for currency 
+	ADDED! Default agent avatar for slider with property 
+	FIXED! Styling bug on third level dropdown menu
+	NEW! Post/page/property share buttons
+	NEW! Option to change header info columns title and icons
+	FIXED! Bug on homepage version 1 which shows all property button over carousel next/prev nav
+	FIXED! Styling bug with home page search form
+- v1.7 – February 27, 2015
+	NEW! Custom Messages/Mails options in Theme Options
+	NEW! Remove thumbnail of property from front end.
+	NEW! Enable/Disable & Required/not required options for fields of submit property in Theme Options
+	NEW! Set price range option for search form
+	FIXED! Strings of js was not translated while using po file
+	FIXED! Menu hides when scrolled on touch devices
+28 April 2015 - Version 1.7.1
+	UPDATED! Theme framework and included plugins for the XSS vulnerability
+26 June 2015 - Version 1.8
+	FIXED! prettyPhoto XSS fix
+	NEW! One Click Demo Install feature
+	NEW! Google Font Options at Theme Options
+	FIXED! Home Latest Properties grid strcuture
+	FIXED! Wrong spellings of Spain/States/Cities
+	FIXED! Search widgets field options at Theme Options
+	UPDATED! Some search form functions
+	FIXED! Single property page image size
+	NEW! Default Image for agent added
+	UPDATED! Email when set a property as favorite
+	FIXED! Property payment plans were not working when there is space in the Plan name
+	FIXED! Single property page showing State when there is no state is selected
+	NEW! LinkedIn Icon for Agent Profile
+	FIXED! Amenities tab is like fw template
+	FIXED! Some loops bugs
+	ADDED! text group field of Redux framework
+	FIXED! Popular agents shortcode orderby bug
+	FIXED! Page content missing from home page template 2
+	NEW! Option to add banner image on single agent pages
+	FIXED! Owl carousel arrows bug on single property page
+	NEW! Option to set auto scroll for testimonial slider shortcode
+	FIXED! Agent Information not getting disabled on Full Width Property page
+	FIXED! Few text strings were not getting translated
+	FIXED! Theme Options menu position conflicting with some plugins
+	FIXED! Some fixes for author.php
+	FIXED! Comments strings not getting translated
+	FIXED! Forgot password link not working
+	NEW! Option to enable property submission for buyers as well
+	NEW! Option to set 0 beds, 0 baths, 0 parking on front end listing form page
+	FIXED! Comments form not working as no send button was there
+	
