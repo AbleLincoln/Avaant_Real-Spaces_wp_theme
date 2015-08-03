@@ -19,7 +19,7 @@ success: function(msg) {
 $(".temp").empty();
 $(".temp").append(msg);
 if(msg.match('added') != null) { $(".favorite_information").empty();
-$(".favorite_information").append('<a id="already-in" href="#" class="accent-color" style="cursor:default; text-decoration:none;" data-toggle="tooltip" data-original-title="'+$property_success+'"><i class="fa fa-heart"></i></a>'); }
+$(".favorite_information").append('<a id="already-in" href="#" class="accent-color" style="cursor:default; text-decoration:none;" data-toggle="tooltip" data-original-title="'+$property_success+'"><button class="btn btn-default btn-block" type="submit">Favorited</button></a>'); }
 },
 complete: function() {
 setTimeout(fade_out, 2000);
