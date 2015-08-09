@@ -58,7 +58,7 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
                       '; } } ?>
               </div>
               <div class="col-md-4">
-                <button class="btn btn-default btn-block" type="submit" id="share">Share</button>
+                <button class="btn btn-default btn-block" id="share">Share</button>
               </div>
               <div class="col-md-4">
                 <button class="btn btn-default btn-block" type="submit">Contact</button>
@@ -224,26 +224,26 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
                             <div id="amenities" class="tab-pane">
                               <div class="additional-amenities">
                                 <?php 
-$amenity_array=array();
-$property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
-global $imic_options;		
-foreach($property_amenities as $properties_amenities_temp){
-if($properties_amenities_temp!='Not Selected'){
-array_push($amenity_array,$properties_amenities_temp);
-}}
-if(isset($imic_options['properties_amenities'])&&count($imic_options['properties_amenities'])>1){
-foreach($imic_options['properties_amenities'] as $properties_amenities){
- $am_name= strtolower(str_replace(' ','',$properties_amenities));
-if(in_array($properties_amenities, $amenity_array)){
-$class = 'available';
-}else{
-$class = 'navailable'; 
-  }
-if(!empty($properties_amenities)){
-echo '<span class="'.$class.'"><i class="fa fa-check-square"></i> '.$properties_amenities.'</span>';
-}}}
-$author_id = $post->post_author; 
-?>
+                                  $amenity_array=array();
+                                  $property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
+                                  global $imic_options;		
+                                  foreach($property_amenities as $properties_amenities_temp){
+                                  if($properties_amenities_temp!='Not Selected'){
+                                  array_push($amenity_array,$properties_amenities_temp);
+                                  }}
+                                  if(isset($imic_options['properties_amenities'])&&count($imic_options['properties_amenities'])>1){
+                                  foreach($imic_options['properties_amenities'] as $properties_amenities){
+                                   $am_name= strtolower(str_replace(' ','',$properties_amenities));
+                                  if(in_array($properties_amenities, $amenity_array)){
+                                  $class = 'available';
+                                  }else{
+                                  $class = 'navailable'; 
+                                    }
+                                  if(!empty($properties_amenities)){
+                                  echo '<span class="'.$class.'"><i class="fa fa-check-square"></i> '.$properties_amenities.'</span>';
+                                  }}}
+                                  $author_id = $post->post_author; 
+                                ?>
                               </div>
                             </div>
                             <div id="address">

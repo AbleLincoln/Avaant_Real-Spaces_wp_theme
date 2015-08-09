@@ -332,16 +332,16 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
     </div>
     </div>';
         ?>
-        <script>
-            jQuery(document).ready(function () {
-                jQuery('.property_prompt').hide();
-                jQuery('.property_prompt').click(function () {
-                    jQuery('.modal').addClass('in').show();
-                });
-                jQuery('.property_prompt').trigger('click');
-            });
-        </script>
-        <?php
+  <script>
+    jQuery(document).ready(function() {
+      jQuery('.property_prompt').hide();
+      jQuery('.property_prompt').click(function() {
+        jQuery('.modal').addClass('in').show();
+      });
+      jQuery('.property_prompt').trigger('click');
+    });
+  </script>
+  <?php
     }
     if (($flag == 1) && (get_query_var('site'))) {
         wp_reset_query();
@@ -364,335 +364,175 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
     </div>
     </div>';
         ?>
-        <script>
-            jQuery(document).ready(function () {
-                jQuery('.property_prompt').hide();
-                jQuery('.property_prompt').click(function () {
-                    jQuery('.modal').addClass('in').show();
-                });
-                jQuery('.property_prompt').trigger('click');
-            });
-        </script>
-        <?php
+    <script>
+      jQuery(document).ready(function() {
+        jQuery('.property_prompt').hide();
+        jQuery('.property_prompt').click(function() {
+          jQuery('.modal').addClass('in').show();
+        });
+        jQuery('.property_prompt').trigger('click');
+      });
+
+    </script>
+    <?php
     }
     ?>
-    <!-- Start Content -->
-    <div class="main" role="main"><div id="content" class="content full"><div class="container">
-                <div class="page"><div class="row"><div class="col-md-12">
-                            <form id="add-property" action="#submit-property" method="post" enctype="multipart/form-data">
-                                <div class="block-heading" id="details">
-                                    <a href="#additionalinfo" class="btn btn-sm btn-default pull-right"><?php _e('Additional Info ', 'framework'); ?><i class="fa fa-chevron-down"></i></a>
-                                    <h4><span class="heading-icon"><i class="fa fa-home"></i></span><?php _e('Project Details', 'framework'); ?></h4>
-                                </div>
-                                <div class="padding-as25 margin-30 lgray-bg">
-                                    <div class="row">
-                                        <?php $div_class_check = 0; ?>
-                                        <?php
-                                        if (!empty($property_details_option_enable['1']) == 1) {
-                                            $div_class_check++;
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">                                            
-                                                <input name="title" value="<?php echo $property_title; ?>" type="text" class="form-control" placeholder="<?php _e('Project name', 'framework'); ?>">
-                                            </div>
-                                        <?php } ?>
-                                        <?php
-                                        if (!empty($property_details_option_enable['2']) == 1) {
-                                            $div_class_check++;
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">
-                                                <input name="address" value="<?php echo $property_address_value; ?>" type="text" class="form-control" placeholder="<?php _e('Address', 'framework'); ?>">
-                                            </div>
-                                        <?php } ?>
-                                        <?php
-                                        if (!empty($property_details_option_enable['3']) == 1) {
-                                            $div_class_check++;
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">
-                                                <input name="area" value="<?php echo $property_area_value; ?>" type="text" class="form-control" placeholder="<?php _e('Area', 'framework'); ?>">
-                                            </div>
-                                        <?php } ?>
-                                        <?php
-                                        if ($div_class_check == 4) {
-                                            echo '</div><div class="row">';
-                                        }
-                                        ?>
-                                        <?php ?>
-                                        <?php
-                                        $imic_country_wise_city = imic_get_multiple_city();
-                                        if (!empty($imic_country_wise_city)) {
-                                            if (!empty($property_details_option_enable['4']) == 1) {
-                                                $div_class_check++;
-                                                if ($div_class_check == 4) {
-                                                    echo '</div><div class="row">';
-                                                }
-                                                echo '<div class="col-md-4 col-sm-4">';
-                                                echo '<select name="city" class="form-control margin-0 selectpicker">';
-                                                echo'<option>' . __('Province', 'framework') . '</option>';
-                                                foreach ($imic_country_wise_city as $key => $value) {
-                                                    if (is_int($key)) {
-                                                        echo '<optgroup label="' . $value . '">';
-                                                    } else {
-                                                        echo "<option value='" . $key . "' " . selected($property_city_value, $key) . ">" . $value . "</option>";
-                                                    }
-                                                }
-                                                echo'</select>';
-                                                echo '</div>';
-                                            }
-                                        }
-                                        ?>
-                                        <?php
-                                        if (!empty($property_details_option_enable['5']) == 1) {
-                                            $div_class_check++;
-                                            if ($div_class_check == 4) {
-                                                echo '</div><div class="row">';
-                                            }
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">
-                                                <input name="pin" value="<?php echo $property_pin; ?>" type="text" class="form-control" placeholder="<?php _e('Property Pin Code', 'framework'); ?>">
-                                            </div>
-                                        <?php } ?>
-                                        <?php
-                                        if (!empty($property_details_option_enable['6']) == 1) {
-                                            $div_class_check++;
-                                            if ($div_class_check == 4) {
-                                                echo '</div><div class="row">';
-                                            }
-                                            ?>
-                                            <div class="col-md-4 col-sm-4 submit-description">
-                                                <textarea name="description" style="resize:vertical" class="form-control margin-0" rows="1" cols="10" placeholder="<?php _e('Project Description', 'framework'); ?>"><?php echo $property_content; ?></textarea>
-                                            </div>
-                                        <?php } ?>
-                                    </div>  
-                                    <?php
-                                    echo '<div class="row">';
-                                    $args = array('orderby' => 'count', 'hide_empty' => false, 'parent' => 0);
-                                    $terms = get_terms(array('city-type'), $args);
-                                    if (!empty($terms)) {
-                                        $selected_other = '';
-                                        if (!empty($othertextonomies)) {
-                                            $selected_other = "selected=selected";
-                                        }
-                                        echo '<div class="col-md-4 col-sm-4 cities">';
-                                        echo '<select name="textonomies_city[]" data-city-type-value="' . $city_type_value . '" data-last-select_value="" data-id="parent_city" class="textonomies_city form-control margin-0 selectpicker">';
-                                        echo'<option value="city">' . __('City', 'framework') . '</option>';
-                                        $city_current_id = get_term_by('slug', $city_type_value, 'city-type');
-                                        $parent_id = '';
-                                        if (!empty($city_current_id)) {
-                                            $data = get_term_top_most_parent($city_current_id->term_id, 'city-type');
-                                            $parent_id = $data->term_id;
-                                        }
-                                        foreach ($terms as $term_data) {
-                                            echo "<option value='" . $term_data->slug . "' " . selected($parent_id, $term_data->term_id, false) . ">" . $term_data->name . "</option>";
-                                        }
-                                        echo'<option value ="other" ' . $selected_other . '>' . __('Other', 'framework') . '</option>';
-                                        echo'</select>';
-                                        echo '</div>';
+      <!-- Start Content -->
+      <div class="main avnt-create" role="main">
+        <div id="content" class="content full">
+          <div class="container">
+            <div class="page">
+              <form id="add-property" action="#submit-property" method="post" enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-md-12 avnt-box">
+                  <h1>Create</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-7">
+                  
+<!--
+                    <div class="block-heading" id="details">
+                      <a href="#additionalinfo" class="btn btn-sm btn-default pull-right">
+                        <?php _e('Additional Info ', 'framework'); ?><i class="fa fa-chevron-down"></i></a>
+                      <h4><span class="heading-icon"><i class="fa fa-home"></i></span><?php _e('Project Details', 'framework'); ?></h4>
+                    </div>
+-->
+                    <div class="row">
+                      <div class="col-md-3">
+                        <h3>Project Name</h3>
+                      </div>
+                      <div class="col-md-9">
+                        <input name="title" value="<?php echo $property_title; ?>" type="text" class="form-control" placeholder="<?php _e('Project name', 'framework'); ?>">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <h3>Industry</h3>
+                      </div>
+                      <div class="col-md-9 submit-property-type">
+                        <?php
+                          echo '<select name="type" class="form-control margin-0 selectpicker">';
+                          echo '<option>' . __('Project category', 'framework') . '</option>';
+                          $property_type = get_terms('property-type', array(
+                              'hide_empty' => 0
+                          ));
+                          if (!empty($property_type) && !is_wp_error($property_type)) {
+                              foreach ($property_type as $term) {
+                                  $selected = ($property_type_value == $term->name) ? "selected" : "";
+                                  echo '<option ' . $selected . '>' . $term->name . '</option>';
+                              }
+                          }
+                          echo "</select>"; 
+                        ?>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <h3>Description</h3>
+                      </div>
+                      <div class="col-md-9 submit-description">
+                        <textarea name="description" style="resize:vertical" class="form-control margin-0" rows="10" cols="10" placeholder="<?php _e('Project Description', 'framework'); ?>"><?php echo $property_content; ?></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <h3>Skills seeking</h3>
+                      </div>
+                      <div class="col-md-9 submit-description">
+                        <div class="row">
+                          <?php
+                            $amenity_array = array();
+                            $id = get_query_var('site');
+                            if (!empty($id)) {
+                                $property_amenities = get_post_meta($id, 'imic_property_amenities', true);
+                                global $imic_options;
+                                foreach ($property_amenities as $properties_amenities_temp) {
+                                    if ($properties_amenities_temp != 'Not Selected') {
+                                        array_push($amenity_array, $properties_amenities_temp);
                                     }
-                                    // use for provide othertextonomies meta id in js
-                                    echo '<span class ="othertextonomies_meta" id="' . $othertextonomies . '"></span>';
-                                    if (!empty($data)) {
-                                        echo '<span class ="sub_sub_category_id" id="' . $city_current_id->term_id . '"></span>';
+                                }
+                            }
+                            global $imic_options;
+                            if (isset($imic_options['properties_amenities']) && count($imic_options['properties_amenities']) > 1) {
+                                foreach ($imic_options['properties_amenities'] as $properties_amenities) {
+                                    $am_name = strtolower(str_replace(' ', '', $properties_amenities));
+                                    $check = '';
+                                    if (in_array($properties_amenities, $amenity_array)) {
+                                        $check = 'checked="checked"';
                                     }
+                                    echo '<div class="col-md-2 col-sm-2 col-xs-6">';
+                                    echo '<label class="checkbox">';
+                                    echo '<input type ="checkbox" name ="' . $am_name . '" ' . $check . ' value ="' . $properties_amenities . '">' . $properties_amenities;
+                                    echo '</label>';
                                     echo '</div>';
-                                    ?>
-                                    <div id="LoadingImage" style="display: none">
-                                        <img src="<?php echo get_template_directory_uri() ?>/images/assets/ajax-loader.gif" />
-                                    </div>
-                                </div>
-                                <div class="block-heading" id="additionalinfo">
-                                    <a href="#amenities" class="btn btn-sm btn-default pull-right"><?php _e('Enter Amenities ', 'framework'); ?><i class="fa fa-chevron-down"></i></a>
-                                    <h4><span class="heading-icon"><i class="fa fa-plus"></i></span><?php _e('Additional Info', 'framework'); ?></h4>
-                                </div>
-                                <div class="padding-as25 margin-30 lgray-bg">
-                                    <div class="row">
-                                        <?php $div_additional_row_check = 0; ?>
-                                        <?php
-                                        if (!empty($additional_info_option_enable['1']) == 1) {
-                                            $div_additional_row_check++;
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">
-                                                <input name="price" value="<?php echo $property_price_value; ?>" type="text" class="form-control" placeholder="<?php echo __('Price', 'framework') . '(' . $currency_symbol . ')'; ?>">
-                                            </div>
-                                        <?php } ?>
-                                        <?php
-                                        if (!empty($additional_info_option_enable['2']) == 1) {
-                                            $div_additional_row_check++;
-                                            echo '<div class="col-md-4 col-sm-4 submit-property-type">';
-                                            echo '<select name="type" class="form-control margin-0 selectpicker">';
-                                            echo '<option>' . __('Project category', 'framework') . '</option>';
-                                            $property_type = get_terms('property-type', array(
-                                                'hide_empty' => 0
-                                            ));
-                                            if (!empty($property_type) && !is_wp_error($property_type)) {
-                                                foreach ($property_type as $term) {
-                                                    $selected = ($property_type_value == $term->name) ? "selected" : "";
-                                                    echo '<option ' . $selected . '>' . $term->name . '</option>';
-                                                }
-                                            }
-                                            echo "</select>";
-                                            echo '</div>';
-                                        }
-                                        if (!empty($additional_info_option_enable['3']) == 1) {
-                                            $div_additional_row_check++;
-                                            echo '<div class="col-md-4 col-sm-4 submit-contract-type">';
-                                            echo '<select name="contract" class="form-control margin-0 selectpicker">';
-                                            echo '<option>' . __('Contract Type', 'framework') . '</option>';
-                                            $property_contract_type = get_terms('property-contract-type', array(
-                                                'hide_empty' => 0
-                                            ));
-                                            if (!empty($property_contract_type) && !is_wp_error($property_contract_type)) {
-                                                foreach ($property_contract_type as $term) {
-                                                    $selected = ($property_contract_type_value == $term->name) ? "selected" : "";
-                                                    echo '<option ' . $selected . '>' . $term->name . '</option>';
-                                                }
-                                            } echo "</select>";
-                                            echo '</div>';
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($div_additional_row_check == 4) {
-                                            echo '</div><div class="row">';
-                                        }
-                                        ?>     
-                                        <?php
-                                        if (!empty($additional_info_option_enable['4']) == 1) {
-                                            $div_additional_row_check++;
-                                            if ($div_additional_row_check == 4) {
-                                                echo '</div><div class="row">';
-                                            }
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">
-                                                <select name="beds" class="form-control selectpicker">
-                                                    <?php
-                                                    echo'<option>' . __('Beds', 'framework') . '</option>';
-                                                    $beds_options = $imic_options['properties_beds'];
-                                                    foreach ($beds_options as $beds) {
-                                                        echo "<option value='" . $beds . "' " . selected($property_beds_value, $beds) . ">" . $beds . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        <?php } ?>
-                                        <?php
-                                        if (!empty($additional_info_option_enable['5']) == 1) {
-                                            $div_additional_row_check++;
-                                            if ($div_additional_row_check == 4) {
-                                                echo '</div><div class="row">';
-                                            }
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">
-                                                <select name="baths" class="form-control selectpicker">
-                                                    <?php
-                                                    echo'<option>' . __('Baths', 'framework') . '</option>';
-                                                    $baths_options = $imic_options['properties_baths'];
-                                                    foreach ($baths_options as $baths) {
-                                                        echo "<option value='" . $baths . "' " . selected($property_baths_value, $baths) . ">" . $baths . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        <?php } ?>
-                                        <?php
-                                        if (!empty($additional_info_option_enable['6']) == 1) {
-                                            $div_additional_row_check++;
-                                            if ($div_additional_row_check == 4) {
-                                                echo '</div><div class="row">';
-                                            }
-                                            ?>
-                                            <div class="col-md-4 col-sm-4">
-                                                <select name="parking" class="form-control selectpicker">
-                                                    <?php
-                                                    echo'<option>' . __('Parking', 'framework') . '</option>';
-                                                    $parking_options = $imic_options['properties_parking'];
-                                                    foreach ($parking_options as $parking) {
-                                                        echo "<option value='" . $parking . "' " . selected($property_parking_value, $parking) . ">" . $parking . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12">
-                                            <label><?php _e('Upload project image', 'framework'); ?></label>
-                                            <p><?php _e('This is the image that displays with your project. It does not need to be a picture of your actual product. Think of this as the attention grabber!', 'framework'); ?></p> 
-                                        </div>
-                                    </div>
-                                    <div class="row" id="multiplePhotos" style="margin-top:15px;">
-                                        <div class="col-md-12 col-sm-12">
-                                            <?php
-                                            echo'<div class="image-placeholder" id="photoList">';
-                                            if (!empty($property_sights_value)) {
-                                                foreach ($property_sights_value as $property_sights) {
-                                                    $default_featured_image = get_post_meta($Property_Id, '_thumbnail_id', true);
-                                                    if ($default_featured_image == $property_sights) {
-                                                        $def_class = 'default-feat-image';
-                                                    } else {
-                                                        $def_class = '';
-                                                    }
-                                                    echo '<div class="col-md-2 col-sm-2">';
-                                                    echo '<div id="property-img"><div id="property-thumb" class="' . $def_class . '"><a id="feat-image" class="accent-color default-image" data-original-title="Set as default image" data-toggle="tooltip" style="text-decoration:none;" href="#"><div class="property-details" style="display:none;"><span class="property-id">' . $Property_Id . '</span><span class="thumb-id">' . $property_sights . '</span></div><img src="' . wp_get_attachment_thumb_url($property_sights) . '" class="image-placeholder" id="filePhoto2" alt=""/></a>';
-                                                    if (get_query_var('site')) {
-                                                        echo '<input rel="' . $Property_Id . '" type="button" id="' . $property_sights . '" value="Remove" class="btn btn-sm btn-default remove-image">';
-                                                    }
-                                                    echo '</div></div>';
-                                                    echo '</div>';
-                                                }
-                                            }
-                                            echo '</div>';
-                                            ?>
-                                            <input id="filePhotoMulti" type="file" name="sightMulti[]" multiple onChange="previewMultiPhotos();">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block-heading" id="amenities">
-                                    <a href="#submit-property" class="btn btn-sm btn-default pull-right"><?php _e('Submit Property ', 'framework'); ?><i class="fa fa-chevron-down"></i></a>
-                                    <h4><span class="heading-icon"><i class="fa fa-star"></i></span><?php _e('Team members needed', 'framework'); ?></h4>
-                                </div>
-                                <div class="padding-as25 margin-30 lgray-bg">
-                                    <div class="row">
-                                        <?php
-                                        $amenity_array = array();
-                                        $id = get_query_var('site');
-                                        if (!empty($id)) {
-                                            $property_amenities = get_post_meta($id, 'imic_property_amenities', true);
-                                            global $imic_options;
-                                            foreach ($property_amenities as $properties_amenities_temp) {
-                                                if ($properties_amenities_temp != 'Not Selected') {
-                                                    array_push($amenity_array, $properties_amenities_temp);
-                                                }
-                                            }
-                                        }
-                                        global $imic_options;
-                                        if (isset($imic_options['properties_amenities']) && count($imic_options['properties_amenities']) > 1) {
-                                            foreach ($imic_options['properties_amenities'] as $properties_amenities) {
-                                                $am_name = strtolower(str_replace(' ', '', $properties_amenities));
-                                                $check = '';
-                                                if (in_array($properties_amenities, $amenity_array)) {
-                                                    $check = 'checked="checked"';
-                                                }
-                                                echo '<div class="col-md-2 col-sm-2 col-xs-6">';
-                                                echo '<label class="checkbox">';
-                                                echo '<input type ="checkbox" name ="' . $am_name . '" ' . $check . ' value ="' . $properties_amenities . '">' . $properties_amenities;
-                                                echo '</label>';
-                                                echo '</div>';
-                                            }
-                                        } else {
-                                            _e('There is no Properties Amenities', 'framework');
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="text-align-center" id="submit-property">
-                                    <?php
+                                }
+                            } else {
+                                _e('There is no Properties Amenities', 'framework');
+                            }
+                          ?>
+                      </div>
+                      </div>
+                    </div>
+                  
+                  <?php
+                            if ($msg != '') {
+                                echo '<div id="message"><div class="alert alert-error">' . $msg . '</div></div>';
+                            }
+                            if (isset($pid)) {
+                                //echo "<div id=\"message\"><div class=\"alert alert-success\">".__('Successfully Added Property','framework')."</div></div>"; 
+                            }
+                            ?>
+                </div>
+                <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                      <label>
+                        <?php _e('Upload project image', 'framework'); ?>
+                      </label>
+                      <p>
+                        <?php _e('This is the image that displays with your project. It does not need to be a picture of your actual product. Think of this as the attention grabber!', 'framework'); ?>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row" id="multiplePhotos" style="margin-top:15px;">
+                    <div class="col-md-12 col-sm-12">
+                      <?php
+                        echo'<div class="image-placeholder" id="photoList">';
+                        if (true) {
+                            foreach ($property_sights_value as $property_sights) {
+                                $default_featured_image = get_post_meta($Property_Id, '_thumbnail_id', true);
+                                if ($default_featured_image == $property_sights) {
+                                    $def_class = 'default-feat-image';
+                                } else {
+                                    $def_class = '';
+                                }
+                                echo '<div class="col-md-2 col-sm-2">';
+                                echo '<div id="property-img"><div id="property-thumb" class="' . $def_class . '"><a id="feat-image" class="accent-color default-image" data-original-title="Set as default image" data-toggle="tooltip" style="text-decoration:none;" href="#"><div class="property-details" style="display:none;"><span class="property-id">' . $Property_Id . '</span><span class="thumb-id">' . $property_sights . '</span></div><img src="' . wp_get_attachment_thumb_url($property_sights) . '" class="image-placeholder" id="filePhoto2" alt=""/></a>';
+                                if (get_query_var('site')) {
+                                    echo '<input rel="' . $Property_Id . '" type="button" id="' . $property_sights . '" value="Remove" class="btn btn-sm btn-default remove-image">';
+                                }
+                                echo '</div></div>';
+                                echo '</div>';
+                            }
+                        }
+                        echo '</div>';
+                      ?>
+                        <input id="filePhotoMulti" type="file" name="sightMulti[]" multiple onChange="previewMultiPhotos();">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-align-center" id="submit-property">
+                      <?php
                                     $current_user_id = $current_user->ID;
                                     $total_property = get_user_meta($current_user_id, 'property_value', true);
                                     $check_for_update = get_query_var('site');
                                     if ((isset($imic_options['plan_show_option'])) && ($imic_options['plan_show_option'] == '1')) {
                                         if (($total_property > 0) || !empty($check_for_update)) {
                                             ?>
-                                            <input type="submit" value="<?php _e('Submit Now', 'framework'); ?>" name="submit" class="btn btn-primary btn-lg"/>
-                                            <?php
+                        <input type="submit" value="<?php _e('Submit Now', 'framework'); ?>" name="submit" class="btn btn-primary btn-lg" />
+                        <?php
                                         } else {
                                             $pay_for_plan_url = imic_get_template_url('template-price-listing.php');
                                             if (!empty($pay_for_plan_url)) {
@@ -704,21 +544,16 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                                         echo '<input type="submit" value="' . __('Submit Now', 'framework') . '" name="submit" class="btn btn-primary btn-lg"/>';
                                     }
                                     ?>
-                                    <input type="hidden" name="post_type" id="post_type" value="domande" />
-                                    <input type="hidden" name="action" value="post" />
-                                    <?php wp_nonce_field('new-post'); ?>
-                                </div>
-                            </form>	
-                            <?php
-                            if ($msg != '') {
-                                echo '<div id="message"><div class="alert alert-error">' . $msg . '</div></div>';
-                            }
-                            if (isset($pid)) {
-                                //echo "<div id=\"message\"><div class=\"alert alert-success\">".__('Successfully Added Property','framework')."</div></div>"; 
-                            }
-                            ?>
-                        </div></div></div></div></div></div>
-    <?php
+                          <input type="hidden" name="post_type" id="post_type" value="domande" />
+                          <input type="hidden" name="action" value="post" />
+                          <?php wp_nonce_field('new-post'); ?>
+                    </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php
 else: echo imic_unidentified_agent();
 endif;
 get_footer();

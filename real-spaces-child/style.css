@@ -26,7 +26,6 @@
 
 ------------------------------------------------------- */
 /*General*/
-/*success!*/
 
 .avaant-hidden, #additionalinfo, .navailable, .middle-header, .badges, .images-count {
     display: none!important;
@@ -41,6 +40,11 @@
  .container {
     width: 1250px;
  }
+}
+
+.avnt-box {
+  border-top: 2px solid #3F5765;
+  border-bottom: 2px solid #3F5765;
 }
 
 /*Header*/
@@ -79,11 +83,6 @@
   margin-bottom: 4px;
   line-height: 1em;
   font-size: 20px;
-}
-
-.avnt-box {
-  border-top: 2px solid #3F5765;
-  border-bottom: 2px solid #3F5765;
 }
 
 .avnt-title-bar.avnt-box {
@@ -134,4 +133,16 @@ ul.share-buttons {
 
 .avnt-project .right-sidebar {
   margin-top: 24px;
+}
+
+/*Create page*/
+
+.avnt-create .avnt-box {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 5px 15px;
+}
+
+.avnt-create .avnt-box h1 {
+  margin-bottom: 0px;
 }
