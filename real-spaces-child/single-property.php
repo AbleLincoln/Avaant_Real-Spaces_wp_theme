@@ -93,39 +93,78 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
 <div class="main" role="main">
   <div id="content" class="content full avnt-project">
     <div class="container">
-      <div class="row avnt-title-bar avnt-box">
-        <div class="col-md-7">
+      <div class="row avnt-title-bar single-property">
+        <div class="col-md-12">
           <h2 class="page-title"><?php echo get_the_title(); ?> <?php if(!empty($property_city)) { echo ', <a class="accent-color" data-original-title="'.$sl.'" data-toggle="tooltip" style="cursor:default; text-decoration:none;" href="javascript:void(0);"><span class="location sort_by_location">'.$property_city.'</span></a>'; } ?></h2>
         </div>
+        <div class="col-md-7">
+          <div class="property-slider">
+            <div id="property-images" class="flexslider">
+              <?php $property_sights = get_post_meta(get_the_ID(),'imic_property_sights',false); ?>
+                <ul class="slides">
+                  <?php foreach($property_sights as $property_sight) {
+                    $image = wp_get_attachment_image_src($property_sight,'600-400-size',''); ?>
+                    <li class="item"> <img src="<?php echo $image[0]; ?>" alt=""> </li>
+                  <?php } ?>
+                </ul>
+            </div>
+            <?php if(count($property_sights)>1) { ?>
+              <div id="property-thumbs" class="flexslider">
+                <?php $property_sights = get_post_meta(get_the_ID(),'imic_property_sights',false); ?>
+                  <ul class="slides">
+                    <?php foreach($property_sights as $property_sight) {
+                      $image = wp_get_attachment_image_src($property_sight,'600-400-size',''); ?>
+                      <li class="item"> <img src="<?php echo $image[0]; ?>" alt=""> </li>
+                    <?php } $author_id = $post->post_author; ?>
+                  </ul>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
         <div class="col-md-5">
-          <div class="row social-buttons">
-            <div class="col-md-4">
+          <div class="avnt-seeking">
+            <h3>Seeking</h3>
+            <div>
               <?php 
-                if ( is_plugin_active( 'favorite_property/favorite_property.php' ) ) { 
-                  if(is_user_logged_in()) { 
-                    $current_user = wp_get_current_user();
-                    echo imic_match_favourite_property($current_user->ID, get_the_ID());
-                  } else {
-                    echo '<a id="show_login" data-target="#login-modal" data-toggle="modal" title="'.__('Login to Add in Favourite','framework').'">'.__('Login','framework').'</a>'; 
+                $amenity_array=array();
+                $property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
+                global $imic_options;		
+                foreach($property_amenities as $properties_amenities_temp) {
+                  if($properties_amenities_temp!='Not Selected'){
+                    array_push($amenity_array,$properties_amenities_temp);
                   }
                 }
+                if(isset($imic_options['properties_amenities'])&&count($imic_options['properties_amenities'])>1) {
+                  foreach($imic_options['properties_amenities'] as $properties_amenities){
+                    $am_name= strtolower(str_replace(' ','',$properties_amenities));
+                    if(in_array($properties_amenities, $amenity_array)){
+                      $class = 'available';
+                    } else {
+                      $class = 'navailable'; 
+                    }
+                    if(!empty($properties_amenities)){
+                      echo '<span class="'.$class.'"><i class="fa fa-user"></i> '.$properties_amenities.'</span>';
+                    }
+                  }
+                }
+                $author_id = $post->post_author; 
               ?>
             </div>
-            <div class="col-md-4">
-              <button class="btn btn-default btn-block" id="share">Share</button>
-            </div>
-            <div class="col-md-4">
-              <button class="btn btn-default btn-block" type="submit">Contact</button>
-            </div>
-            <div class="share-box col-md-12" id="share-box">
+          </div>
+          <div class="avnt-description">
+            <h3>Project Description</h3>
+              <?php the_content(); ?>
+          </div>
+          <div class="avnt-contact">
+            <h3 style="display: inline-block">Contact:</h3>
+            <?php echo '<a href="mailto:'.$avnt_contact_email.'">'.$avnt_contact_email.'</a></p>'; ?>
+          </div>
+          <div>
+            <h3>Share</h3>
               <?php 
                 if ($imic_options['switch_sharing'] == 1 && $imic_options['share_post_types']['3'] == '1') {
                   imic_share_buttons(); } 
               ?>
-            </div>
-            <div class="avnt-slide-box col-md-12">
-              <?php echo '<p>The email here: <a href="mailto:'.$avnt_contact_email.'">email us!</a></p>'; ?>
-            </div>
           </div>
         </div>
       </div>
@@ -164,67 +203,6 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
                     echo '<a id="show_login" data-target="#login-modal" data-toggle="modal" title="'.__('Login to Add in Favourite','framework').'">'.__('Login','framework').'</a>'; 
                   } } ?>
               </span>
-            </div>
-
-            <div class="property-slider">
-              <div id="property-images" class="flexslider">
-                <?php $property_sights = get_post_meta(get_the_ID(),'imic_property_sights',false); ?>
-                  <ul class="slides">
-                    <?php foreach($property_sights as $property_sight) {
-                      $image = wp_get_attachment_image_src($property_sight,'600-400-size',''); ?>
-                      <li class="item"> <img src="<?php echo $image[0]; ?>" alt=""> </li>
-                    <?php } ?>
-                  </ul>
-              </div>
-              <?php if(count($property_sights)>1) { ?>
-                <div id="property-thumbs" class="flexslider">
-                  <?php $property_sights = get_post_meta(get_the_ID(),'imic_property_sights',false); ?>
-                    <ul class="slides">
-                      <?php foreach($property_sights as $property_sight) {
-                        $image = wp_get_attachment_image_src($property_sight,'600-400-size',''); ?>
-                        <li class="item"> <img src="<?php echo $image[0]; ?>" alt=""> </li>
-                      <?php } $author_id = $post->post_author; ?>
-                    </ul>
-                </div>
-              <?php } ?>
-            </div>
-            
-            <div class="avnt-project-details row">
-              <div class="avnt-seeking col-md-4">
-                <h3>Seeking</h3>
-                <div class="avnt-box">
-                  <?php 
-                    $amenity_array=array();
-                    $property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
-                    global $imic_options;		
-                    foreach($property_amenities as $properties_amenities_temp) {
-                      if($properties_amenities_temp!='Not Selected'){
-                        array_push($amenity_array,$properties_amenities_temp);
-                      }
-                    }
-                    if(isset($imic_options['properties_amenities'])&&count($imic_options['properties_amenities'])>1) {
-                      foreach($imic_options['properties_amenities'] as $properties_amenities){
-                        $am_name= strtolower(str_replace(' ','',$properties_amenities));
-                        if(in_array($properties_amenities, $amenity_array)){
-                          $class = 'available';
-                        } else {
-                          $class = 'navailable'; 
-                        }
-                        if(!empty($properties_amenities)){
-                          echo '<span class="'.$class.'"><i class="fa fa-check-square"></i> '.$properties_amenities.'</span>';
-                        }
-                      }
-                    }
-                    $author_id = $post->post_author; 
-                  ?>
-                </div>
-              </div>
-              <div class="avnt-project-description col-md-8">
-                <h3>Project Description</h3>
-                <div class="avnt-box">
-                  <?php the_content(); ?>
-                </div>
-              </div>
             </div>
 
             <?php if(!empty($sidebar)) { ?>
@@ -382,7 +360,7 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
                             <?php } ?>
                           </a>
                           <div class="property-info">
-                            <h4><a href="<?php the_permalink(); ?>">  <?php echo $property_address; ?></a></h4>
+                            <h4><a href="<?php the_permalink(); ?>">  <?php echo get_the_title(); ?></a></h4>
                             <?php if(!empty($property_city)) {
                               echo '<a class="accent-color" data-original-title="'.$sl.'" data-toggle="tooltip" style="cursor:default; text-decoration:none;" href="javascript:void(0);"><span class="location sort_by_location">'.$property_city.'</span></a><br>';
                             } ?>
@@ -453,6 +431,39 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
                   <?php echo apply_filters('the_content', $description); ?>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+                
+<!--        social buttons-->
+        <div class="col-md-5">
+          <div class="row social-buttons">
+            <div class="col-md-4">
+              <?php 
+                if ( is_plugin_active( 'favorite_property/favorite_property.php' ) ) { 
+                  if(is_user_logged_in()) { 
+                    $current_user = wp_get_current_user();
+                    echo imic_match_favourite_property($current_user->ID, get_the_ID());
+                  } else {
+                    echo '<a id="show_login" data-target="#login-modal" data-toggle="modal" title="'.__('Login to Add in Favourite','framework').'">'.__('Login','framework').'</a>'; 
+                  }
+                }
+              ?>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-default btn-block" id="share">Share</button>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-default btn-block" type="submit">Contact</button>
+            </div>
+            <div class="share-box col-md-12" id="share-box">
+              <?php 
+                if ($imic_options['switch_sharing'] == 1 && $imic_options['share_post_types']['3'] == '1') {
+                  imic_share_buttons(); } 
+              ?>
+            </div>
+            <div class="avnt-slide-box col-md-12">
+              
             </div>
           </div>
         </div>
