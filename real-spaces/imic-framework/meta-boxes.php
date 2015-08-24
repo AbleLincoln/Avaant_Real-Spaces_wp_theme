@@ -663,6 +663,13 @@ $meta_boxes[] = array(
             'desc' => __('Enter the Zoom level  for Property Map', 'framework'),
             'type' => 'text',
             ),
+        //Avnt Contact Email
+          array(
+            'name' => __('Contact email', 'framework'),
+            'id' => $prefix . 'project_email',
+            'desc' => __('Contact email for this project', 'framework'),
+            'type' => 'text',
+          ),
       )
 );
 /* Testimonial Meta Box

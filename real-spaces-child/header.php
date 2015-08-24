@@ -60,10 +60,125 @@ $header_style='style="background-color: '.$imic_options['header_background_color
         <?php 
       $menu_locations =get_nav_menu_locations();
       ?>
-          <div class="top-header hidden-xs">
+          <div class="top-header hidden-xs avaant-hidden">
             <div class="container">
               <div class="row">
-                <div class="col-md-4 col-sm-6 pull-right">
+                
+                <div class="col-md-8 col-sm-6">
+                  <ul class="horiz-nav pull-right">
+                    <?php
+				/* Display Top Bar Social Links
+				=======================================*/
+				$socialSites = $imic_options['top_social_links'];
+				if(!empty($socialSites)) {
+				foreach($socialSites as $key => $value) {
+					if(filter_var($value, FILTER_VALIDATE_URL)){ 
+						echo '<li><a href="'. $value .'" target="_blank"><i class="fa '. $key .'"></i></a></li>';
+					}
+				} }
+				?>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="middle-header">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 col-sm-8 col-xs-8">
+                  <h1 class="logo"> 
+            	<?php
+				/* Display Site Logo
+				==========================*/
+				echo '<a href="' . esc_url( home_url() ) . '" title="' . get_bloginfo('name') . '">';
+				echo (!empty($imic_options['logo_upload']['url'])) ? '<img src="' . $imic_options['logo_upload']['url'] . '" alt="Logo">' : '<img src="' . get_template_directory_uri() . '/images/logo.png" alt="Logo">';
+				echo '</a>';
+				?>
+            </h1>
+                </div>
+                <div class="col-md-8 col-sm-4 col-xs-4">
+                  <div class="contact-info-blocks hidden-sm hidden-xs">
+                    <?php
+				/* Display Header Content Info Block
+				===========================================*/ 
+				if ($imic_options['header_free_line_icon'] != '') {
+					$hinfo1icon = $imic_options['header_free_line_icon'];
+				}
+				if ($imic_options['header_email_us_icon'] != '') {
+					$hinfo2icon = $imic_options['header_email_us_icon'];
+				}
+				if ($imic_options['header_working_hours_icon'] != '') {
+					$hinfo3icon = $imic_options['header_working_hours_icon'];
+				}
+				
+				if ($imic_options['header_free_line_title'] != '') {
+					$hinfo1title = $imic_options['header_free_line_title'];
+				}
+				if ($imic_options['header_email_us_title'] != '') {
+					$hinfo2title = $imic_options['header_email_us_title'];
+				}
+				if ($imic_options['header_working_hours_title'] != '') {
+					$hinfo3title = $imic_options['header_working_hours_title'];
+				}
+				
+				if ($imic_options['header_free_line'] != '') {
+					echo '<div>
+							<i class="fa fa-'.$hinfo1icon.'"></i> '.$hinfo1title.'
+							<span>'.$imic_options['header_free_line'].'</span>
+						  </div>';
+				}
+				if ($imic_options['header_email_us'] != '') {
+					echo '<div>
+							<i class="fa fa-'.$hinfo2icon.'"></i> '.$hinfo2title.'
+							<span>'.$imic_options['header_email_us'].'</span>
+						  </div>';
+				}
+				if ($imic_options['header_working_hours'] != '') {
+					echo '<div>
+							<i class="fa fa-'.$hinfo3icon.'"></i> '.$hinfo3title.'
+							<span>'.$imic_options['header_working_hours'].'</span>
+						  </div>';	
+				}
+				?>
+                  </div>
+                  <a href="#" class="visible-sm visible-xs menu-toggle"><i class="fa fa-bars"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php  ?>
+            <div class="main-menu-wrapper">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8">
+                    <nav class="navigation">
+                      <?php if(!empty($menu_locations['primary-menu'])){
+			  /* Display Header Primary Menu
+			  ===========================================*/
+			  wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' => 'sf-menu', 'container' => '')); ?>
+                        <?php } else { echo '<ul class="sf-menu sf-js-enabled">'; wp_list_pages('number=8&title_li='); echo '</ul>'; } ?>
+                      
+                <div class="col-md-8 col-sm-6 avaant-hidden">
+                  <ul class="horiz-nav pull-right">
+                    <?php
+				/* Display Top Bar Social Links
+				=======================================*/
+				$socialSites = $imic_options['top_social_links'];
+				if(!empty($socialSites)) {
+				foreach($socialSites as $key => $value) {
+					if(filter_var($value, FILTER_VALIDATE_URL)){ 
+						echo '<li><a href="'. $value .'" target="_blank"><i class="fa '. $key .'"></i></a></li>';
+					}
+				} }
+				?>
+                  </ul>
+                      </div>  
+                    </nav>
+                  </div>
+                  
+                  <div class="col-md-4 col-sm-6 pull-right">
                   <?php if($imic_options['enable-top-header-login-dropdown']==1){ ?>
                     <ul class="horiz-nav pull-right">
                       <li class="dropdown">
@@ -154,119 +269,7 @@ $header_style='style="background-color: '.$imic_options['header_background_color
                     <?php } else { 
 			 wp_nav_menu(array('theme_location' => 'top-menu', 'menu_class' => 'sf-menu', 'container' => '','items_wrap' => '<ul id="%1$s" class="horiz-nav pull-left">%3$s</ul>','walker'=>new My_Walker_Nav_Menu())); } ?>
                 </div>
-                <div class="col-md-8 col-sm-6">
-                  <ul class="horiz-nav pull-right">
-                    <?php
-				/* Display Top Bar Social Links
-				=======================================*/
-				$socialSites = $imic_options['top_social_links'];
-				if(!empty($socialSites)) {
-				foreach($socialSites as $key => $value) {
-					if(filter_var($value, FILTER_VALIDATE_URL)){ 
-						echo '<li><a href="'. $value .'" target="_blank"><i class="fa '. $key .'"></i></a></li>';
-					}
-				} }
-				?>
-                  </ul>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="middle-header">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4 col-sm-8 col-xs-8">
-                  <h1 class="logo"> 
-            	<?php
-				/* Display Site Logo
-				==========================*/
-				echo '<a href="' . esc_url( home_url() ) . '" title="' . get_bloginfo('name') . '">';
-				echo (!empty($imic_options['logo_upload']['url'])) ? '<img src="' . $imic_options['logo_upload']['url'] . '" alt="Logo">' : '<img src="' . get_template_directory_uri() . '/images/logo.png" alt="Logo">';
-				echo '</a>';
-				?>
-            </h1>
-                </div>
-                <div class="col-md-8 col-sm-4 col-xs-4">
-                  <div class="contact-info-blocks hidden-sm hidden-xs">
-                    <?php
-				/* Display Header Content Info Block
-				===========================================*/ 
-				if ($imic_options['header_free_line_icon'] != '') {
-					$hinfo1icon = $imic_options['header_free_line_icon'];
-				}
-				if ($imic_options['header_email_us_icon'] != '') {
-					$hinfo2icon = $imic_options['header_email_us_icon'];
-				}
-				if ($imic_options['header_working_hours_icon'] != '') {
-					$hinfo3icon = $imic_options['header_working_hours_icon'];
-				}
-				
-				if ($imic_options['header_free_line_title'] != '') {
-					$hinfo1title = $imic_options['header_free_line_title'];
-				}
-				if ($imic_options['header_email_us_title'] != '') {
-					$hinfo2title = $imic_options['header_email_us_title'];
-				}
-				if ($imic_options['header_working_hours_title'] != '') {
-					$hinfo3title = $imic_options['header_working_hours_title'];
-				}
-				
-				if ($imic_options['header_free_line'] != '') {
-					echo '<div>
-							<i class="fa fa-'.$hinfo1icon.'"></i> '.$hinfo1title.'
-							<span>'.$imic_options['header_free_line'].'</span>
-						  </div>';
-				}
-				if ($imic_options['header_email_us'] != '') {
-					echo '<div>
-							<i class="fa fa-'.$hinfo2icon.'"></i> '.$hinfo2title.'
-							<span>'.$imic_options['header_email_us'].'</span>
-						  </div>';
-				}
-				if ($imic_options['header_working_hours'] != '') {
-					echo '<div>
-							<i class="fa fa-'.$hinfo3icon.'"></i> '.$hinfo3title.'
-							<span>'.$imic_options['header_working_hours'].'</span>
-						  </div>';	
-				}
-				?>
-                  </div>
-                  <a href="#" class="visible-sm visible-xs menu-toggle"><i class="fa fa-bars"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php  ?>
-            <div class="main-menu-wrapper">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <nav class="navigation">
-                      <?php if(!empty($menu_locations['primary-menu'])){
-			  /* Display Header Primary Menu
-			  ===========================================*/
-			  wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' => 'sf-menu', 'container' => '')); ?>
-                        <?php } else { echo '<ul class="sf-menu sf-js-enabled">'; wp_list_pages('number=8&title_li='); echo '</ul>'; } ?>
-                      
-                <div class="col-md-8 col-sm-6">
-                  <ul class="horiz-nav pull-right">
-                    <?php
-				/* Display Top Bar Social Links
-				=======================================*/
-				$socialSites = $imic_options['top_social_links'];
-				if(!empty($socialSites)) {
-				foreach($socialSites as $key => $value) {
-					if(filter_var($value, FILTER_VALIDATE_URL)){ 
-						echo '<li><a href="'. $value .'" target="_blank"><i class="fa '. $key .'"></i></a></li>';
-					}
-				} }
-				?>
-                  </ul>
-                      </div>  
-                    </nav>
-                  </div>
+                  
                 </div>
               </div>
             </div>

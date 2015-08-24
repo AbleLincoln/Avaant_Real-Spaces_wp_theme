@@ -15,7 +15,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
     $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']);
     $msg = '';
     $flag = 0;
-    $property_address_value = $property_title = $property_pin = $property_amenities_value = $property_area_value = $property_baths_value = $property_beds_value = $property_city_value = $property_parking_value = $property_price_value = $Property_Id = $property_contract_type_value = $property_type_value = $property_content = $property_sights_value = $othertextonomies = $city_type_value = '';
+    $property_address_value = $property_title = $property_pin = $property_amenities_value = $property_area_value = $property_baths_value = $property_beds_value = $property_city_value = $property_parking_value = $property_price_value = $Property_Id = $property_contract_type_value = $property_type_value = $property_content = $property_sights_value = $othertextonomies = $city_type_value = $avnt_contact_email = '';
     if (get_query_var('site')) {
         $Property_Id = get_query_var('site');
         $property_title = get_the_title($Property_Id);
@@ -31,6 +31,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
         $property_amenities_value = get_post_meta($Property_Id, 'imic_property_amenities', true);
         $property_sights_value = get_post_meta($Property_Id, 'imic_property_sights', false);
         $property_amenities_per = $property_amenities_value;
+        $avnt_contact_email = get_post_meta($Property_Id, 'imic_project_email', true);
         $type = wp_get_object_terms($Property_Id, 'property-type', array('fields' => 'ids'));
         if (!empty($type)) {
             $term = get_term($type[0], 'property-type');
@@ -88,6 +89,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
         if (!empty($additional_info_option_enable['2']) == 1) {
             $property_type_value = $_POST['type'];
         }
+            $avnt_contact_email = $_POST['email'];
         if (isset($_POST['textonomies_city']) && !empty($_POST['textonomies_city'])) {
             $reverce_data = array_reverse($_POST['textonomies_city']);
             foreach ($reverce_data as $textonomies_city) {
@@ -180,6 +182,9 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                 $msg .= __("Please upload file.", "framework");
             }
         }
+        if (empty($avnt_contact_email)) {
+          $msg .= __("Please enter email.", "framework");
+        }
         if ($msg == '') {
             if (get_query_var('site')) {
                 $post = array(
@@ -247,6 +252,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                 if (!empty($additional_info_option_enable['2']) == 1) {
                     wp_set_object_terms($pid, $property_type_value, 'property-type');
                 }
+                  update_post_meta($pid, 'imic_project_email', $avnt_contact_email);
                 update_post_meta($pid, 'imic_property_custom_city', $property_custom_city);
                 $city_for_update = get_term_by('slug', $city_type_value, 'city-type');
                 $term_array = array();
@@ -293,6 +299,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                 $property_amenities_value = get_post_meta($Property_Id, 'imic_property_amenities', true);
                 $property_sights_value = get_post_meta($Property_Id, 'imic_property_sights', false);
                 $property_amenities_per = $property_amenities_value;
+                $avnt_contact_email = get_post_meta($Property_Id, 'imic_project_email', true);
                 $type = wp_get_object_terms($Property_Id, 'property-type', array('fields' => 'ids'));
                 if (!empty($type)) {
                     $term = get_term($type[0], 'property-type');
@@ -434,6 +441,10 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                       <div class="col-md-9 submit-description">
                         <textarea name="description" style="resize:vertical" class="form-control margin-0" rows="10" cols="10" placeholder="<?php _e('Project Description', 'framework'); ?>"><?php echo $property_content; ?></textarea>
                       </div>
+                      <div class="col-md-12">
+                        <h3>Email</h3>
+                        <input name="email" value="<?php echo $avnt_contact_email; ?>" type="text" class="form-control" placeholder="<?php _e('Email', 'framework'); ?>">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-3">
@@ -499,7 +510,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                     <div class="col-md-12 col-sm-12">
                       <?php
                         echo'<div class="image-placeholder" id="photoList">';
-                        if (true) {
+                        if (!empty($property_sights_value)) {
                             foreach ($property_sights_value as $property_sights) {
                                 $default_featured_image = get_post_meta($Property_Id, '_thumbnail_id', true);
                                 if ($default_featured_image == $property_sights) {

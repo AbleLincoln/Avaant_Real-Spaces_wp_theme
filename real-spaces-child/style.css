@@ -28,18 +28,7 @@
 /*General*/
 
 .avaant-hidden, #additionalinfo, .navailable, .middle-header, .badges, .images-count {
-    display: none!important;
-}
-
-.item, .type-rent {
-    border: 1px solid rgb(200, 200, 255);
-    
-}
-
-@media (min-width: 1350px) {
- .container {
-    width: 1250px;
- }
+  display: none!important;
 }
 
 .avnt-box {
@@ -49,20 +38,47 @@
 
 /*Header*/
 
-.main-menu-wrapper > .container {
-  margin: 0;
+.main-menu-wrapper {
+  background-color: #fff;
+  box-shadow: none;
+  border-bottom: 1px solid #d9d9de;
+}
+  .main-menu-wrapper > .container {
+    width: 100%;
+    padding-right: 0;
+  }
+    .main-menu-wrapper > .container > div > div {
+      min-height: 0;
+    }
+
+.navigation > ul > li > a {
+  border: none;
+  padding: 17.5px 22px;
+}
+
+.navigation > ul > li:hover > a {
+  border: 0!important;
+  padding: 15px 22px;
+  background-color: #F3F3F3;
+}
+
+.navigation > ul > li:first-child > a {
+  border: none;
 }
 
 .top-header > .container {
   margin-right: 0;
 }
 
-.horiz-nav {
-  padding-right: 14px;
+.horiz-nav > .dropdown > a {
+  color: #333;
+  padding: 10px 20px;
 }
 
 .horiz-nav .dropdown-menu {
   min-width: 130px;
+  left: -20px;
+  top: 49px;
 }
 
 .horiz-nav .dropdown-menu > li > a {
@@ -71,12 +87,24 @@
 
 /*Project Page*/
 
+.avnt-project > .container {
+  width: 100%;
+}
+
+.avnt-project > .container > .avnt-title-bar {
+  padding: 20px 16% 50px 16%;
+}
+
+.property-slider {
+  margin: 0;
+}
+
 .single-property {
   padding-bottom: 45px;
 }
 
 .avnt-project {
-  padding: 35px 0;
+  padding: 0 0;
 }
 
 .avnt-project h3 {
@@ -85,22 +113,30 @@
   font-size: 20px;
 }
 
-.avnt-title-bar.avnt-box {
-  border-top: 0px;
+.avnt-title-bar {
+  background-color: #F7FAFA;
+}
+
+.avnt-title-bar .avnt-details {
+  width: 60%;
 }
 
 .avnt-project-details .avnt-box {
   min-height: 100px;
 }
 
-.avnt-seeking .avnt-box {
-  padding-top: 5px;
+.avnt-seeking, .avnt-description {
+  margin-bottom: 70px;
 }
 
 span.available {
-  display: block;
   font-size: 18px;
   line-height: 1.5;
+  background-color: #fff;
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 5px;
+  margin-bottom: 8px;
 }
 
 .social-buttons {
@@ -112,23 +148,23 @@ span.available {
 }
 
 ul.share-buttons {
-  margin-left: 86px;
+  margin: 0;
 }
 
 .share-buttons > li {
   margin-left: 10px;
-  margin-top: 15px;
+  margin-top: 3px;
 }
 
 .share-buttons > li > a {
   border-radius: 4px;
-  width: 42px;
-  height: 39px;
+  width: 32px;
+  height: 29px;
 }
 
 .share-buttons i {
-  font-size: 20px;
-  margin-top: 9px;
+  font-size: 18px;
+  margin-top: 6px;
 }
 
 .avnt-project .right-sidebar {
