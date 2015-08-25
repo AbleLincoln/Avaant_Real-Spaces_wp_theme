@@ -139,11 +139,9 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
                     $am_name= strtolower(str_replace(' ','',$properties_amenities));
                     if(in_array($properties_amenities, $amenity_array)){
                       $class = 'available';
+                      echo '<span class="'.$class.'"><i class="fa fa-user"></i> '.$properties_amenities.'</span><br>';
                     } else {
                       $class = 'navailable'; 
-                    }
-                    if(!empty($properties_amenities)){
-                      echo '<span class="'.$class.'"><i class="fa fa-user"></i> '.$properties_amenities.'</span>';
                     }
                   }
                 }
@@ -319,6 +317,37 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
                 <?php }} endwhile; endif; ?>
           </div>
           
+        <div class="sidebar right-sidebar">
+          <h3>Team Details</h3>
+          <div class="avnt-box avnt-team-details">
+            <div class="agent">
+              <div class="row">
+                <div class="col-md-12">
+                  <?php
+                  $agent_image = get_the_author_meta('agent-image', $author_id); 
+                  $userFirstName = get_the_author_meta('first_name', $author_id);
+                  $userLastName = get_the_author_meta('last_name', $author_id);
+                  $userName = get_userdata( $author_id );
+                  if(!empty($userFirstName) || !empty($userLastName)) {
+                    $userName = $userFirstName .' '. $userLastName; 
+                  } else { 
+                    $userName = $userName->user_login;
+                  } 
+                  $description = get_the_author_meta( 'description', $author_id );
+                  if(!empty($agent_image)) { ?>
+                    <img src="<?php echo $agent_image; ?>">
+                  <?php } else {
+                    $default_image_agent = $imic_options['default_agent_image']; ?>
+                    <img src="<?php echo $default_image_agent['url']; ?>">
+                  <?php } ?>
+                  <h4><a href="<?php echo get_author_posts_url($author_id); ?>"><?php echo $userName; ?></a></h4>
+                  <?php echo apply_filters('the_content', $description); ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
           <!-- Start Related Properties -->
           <?php query_posts(array('post_type'=>'property','post_status'=>'publish','property-type'=>$property_type,'posts_per_page'=>3,'post__not_in'=>array($this_property_id)));
             if($wp_query->post_count!=0) { ?>
@@ -404,36 +433,7 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
             </div>
             <?php // } ?>
 -->
-        <div class="sidebar right-sidebar col-md-5">
-          <h3>Team Details</h3>
-          <div class="avnt-box avnt-team-details">
-            <div class="agent">
-              <div class="row">
-                <div class="col-md-12">
-                  <?php
-                  $agent_image = get_the_author_meta('agent-image', $author_id); 
-                  $userFirstName = get_the_author_meta('first_name', $author_id);
-                  $userLastName = get_the_author_meta('last_name', $author_id);
-                  $userName = get_userdata( $author_id );
-                  if(!empty($userFirstName) || !empty($userLastName)) {
-                    $userName = $userFirstName .' '. $userLastName; 
-                  } else { 
-                    $userName = $userName->user_login;
-                  } 
-                  $description = get_the_author_meta( 'description', $author_id );
-                  if(!empty($agent_image)) { ?>
-                    <img src="<?php echo $agent_image; ?>">
-                  <?php } else {
-                    $default_image_agent = $imic_options['default_agent_image']; ?>
-                    <img src="<?php echo $default_image_agent['url']; ?>">
-                  <?php } ?>
-                  <h4><a href="<?php echo get_author_posts_url($author_id); ?>"><?php echo $userName; ?></a></h4>
-                  <?php echo apply_filters('the_content', $description); ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
                 
 <!--        social buttons-->
         <div class="col-md-5">

@@ -14,85 +14,90 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
 ?>
 <!-- Site Showcase -->
 <div class="site-showcase">
-    <?php
-         $imic_slider_with_property= get_post_meta($homeID,'imic_slider_with_property',true);
-         if($imic_slider_with_property==1){
-          $imic_slider_image=get_post_meta($homeID,'imic_slider_image',false);
-          if(count($imic_slider_image)>0){
-               echo '<div class="slider-mask overlay-transparent"></div>
-                <!-- Start Hero Slider -->
-    <div class="hero-slider flexslider clearfix" data-autoplay='.$autoSlide.' data-pagination="no" data-arrows='.$sliderArrows.' data-style='. $sliderEffect.' data-pause="yes">';
-              echo '<ul class="slides">';
-                foreach ($imic_slider_image as $custom_home_image) {
-                   $image = wp_get_attachment_image_src($custom_home_image, '1200-500-size' ); 
-                 echo '<li class=" parallax" style="background-image:url('.$image[0].')">';
-                 echo '</li>';  
-                }
-                echo '</ul></div>';
-          }
-       }
-        else if($imic_slider_with_property==2){
-       $imic_select_revolution_from_list = get_post_meta($homeID, 'imic_pages_select_revolution_from_list', true);
-       echo '<div class="slider-revolution-new">';
-       echo do_shortcode($imic_select_revolution_from_list);
-       echo '</div>';
-       }
-       else{
-        query_posts(array('post_type'=>'property','post_status'=>'publish','posts_per_page'=>-1,'meta_query' => array(array('key' => 'imic_slide_property','value' => 1,'compare' => '=='),),)); 
+  <?php
+    $imic_slider_with_property= get_post_meta($homeID,'imic_slider_with_property',true);
+    if($imic_slider_with_property==1){
+      $imic_slider_image=get_post_meta($homeID,'imic_slider_image',false);
+      if(count($imic_slider_image)>0){
+        echo '<div class="slider-mask overlay-transparent"></div>
+        <!-- Start Hero Slider -->
+        <div class="hero-slider flexslider clearfix" data-autoplay='.$autoSlide.' data-pagination="no" data-arrows='.$sliderArrows.' data-style='. $sliderEffect.' data-pause="yes">';
+        echo '<ul class="slides">';
+        foreach ($imic_slider_image as $custom_home_image) {
+          $image = wp_get_attachment_image_src($custom_home_image, '1200-500-size' ); 
+          echo '<li class=" parallax" style="background-image:url('.$image[0].')">';
+          echo '</li>';  
+        }
+        echo '</ul></div>';
+      }
+    }
+    else if($imic_slider_with_property==2){
+      $imic_select_revolution_from_list = get_post_meta($homeID, 'imic_pages_select_revolution_from_list', true);
+      echo '<div class="slider-revolution-new">';
+      echo do_shortcode($imic_select_revolution_from_list);
+      echo '</div>';
+    }
+    else {
+      query_posts(array('post_type'=>'property','post_status'=>'publish','posts_per_page'=>-1,'meta_query' => array(array('key' => 'imic_slide_property','value' => 1,'compare' => '=='),),)); 
 	  if(have_posts()):
 	  echo '<div class="slider-mask overlay-transparent"></div>
-    <!-- Start Hero Slider -->
-    <div class="hero-slider flexslider clearfix" data-autoplay='.$autoSlide.' data-pagination="no" data-arrows='.$sliderArrows.' data-style='. $sliderEffect.' data-pause="yes">';
-              echo '<ul class="slides">';
-              while(have_posts()):the_post(); 
-          $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), '1200-500-size' );
-          echo '<li class=" parallax" style="background-image:url('.$image[0].')">';
-                echo '<div class="flex-caption">';
-                $imic_property_site_address= get_post_meta(get_the_ID(),'imic_property_site_address',true);
-                if(!empty($imic_property_site_address)):
-                    echo '<strong class="title">'.$imic_property_site_address;
-                 $imic_property_site_city=get_post_meta(get_the_ID(),'imic_property_site_city',true); if(!empty($imic_property_site_city)){ echo ', <em>'.$imic_property_site_city.'</em>'; }
-                echo '</strong>';
-                 endif;
-                $imic_property_price = get_post_meta(get_the_ID(),'imic_property_price',true);
-             if(!empty($imic_property_price)):
-                 echo '<div class="price"><strong>'.$currency_symbol.'</strong><span>'.$imic_property_price.'</span></div>';
-             endif;
-             echo '<a href="'.get_permalink(get_the_ID()).'" class="btn btn-primary btn-block">'.__('Details','framework').'</a>';
-             echo '<div class="hero-agent">';
-             $post_author_id = get_post_field( 'post_author', get_the_ID() );
-             $userImg = esc_attr(get_the_author_meta('agent-image', $post_author_id)); 
-             if(!empty($userImg)):
-             echo '<img src="'.$userImg.'" alt="" class="hero-agent-pic"/>';
-			 else:
-             echo '<img src="'. get_template_directory_uri() . '/images/default_agent.png" alt="" class="hero-agent-pic"/>';
-             endif;
-             echo '<a href="'.get_author_posts_url($post_author_id).'" class="hero-agent-contact" data-placement="left"  data-toggle="tooltip" title="" data-original-title="'.__('Contact Agent','framework').'"><i class="fa fa-envelope"></i></a>';
-             echo '</div></div>';
-             echo '</li>';
-       endwhile; echo '</ul></div>'; endif; wp_reset_query();} ?>
-       <!-- Site Search Module -->
-    <?php   $output = '';
-    global $imic_options;
-       $search_home_blocks = $imic_options['search-home-blocks']['Enabled'];
-	  if (count($search_home_blocks)>1):
-       foreach ($search_home_blocks as $key => $value) {
-                switch ($key) {
-                     case 'property_type':
-                   $args_terms = array('orderby' => 'count', 'hide_empty' => true);
-                        $propertyterms = get_terms('property-type', $args_terms);
-                        if (!empty($propertyterms)) {
-                            $output.= '<div class="search-field"><label>'.__('Property Type', 'framework').'</label><select name="propery_type" class="form-control selectpicker">';
-                            $output .='<option selected>' . __('Project Category', 'framework') . '</option>';
-                            foreach ($propertyterms as $term) {
-                                $term_name = $term->name;
-                                $term_slug = $term->slug;
-                                $output .="<option value='" . $term_slug . "'>" . $term_name . "</option>";
-                            }
-                            $output .="</select></div>";
-                            
-                        }
-                break;
+        <!-- Start Hero Slider -->
+        <div class="hero-slider flexslider clearfix" data-autoplay='.$autoSlide.' data-pagination="no" data-arrows='.$sliderArrows.' data-style='. $sliderEffect.' data-pause="yes">';
+      echo '<ul class="slides">';
+      while(have_posts()):the_post(); 
+        $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), '1200-500-size' );
+        echo '<li class=" parallax" style="background-image:url('.$image[0].')">';
+        echo '<div class="flex-caption">';
+        $imic_property_site_address= get_post_meta(get_the_ID(),'imic_property_site_address',true);
+        if(!empty($imic_property_site_address)):
+          echo '<strong class="title">'.$imic_property_site_address;
+          $imic_property_site_city=get_post_meta(get_the_ID(),'imic_property_site_city',true); if(!empty($imic_property_site_city)){ echo ', <em>'.$imic_property_site_city.'</em>'; }
+          echo '</strong>';
+        endif;
+        $imic_property_price = get_post_meta(get_the_ID(),'imic_property_price',true);
+        if(!empty($imic_property_price)):
+          echo '<div class="price"><strong>'.$currency_symbol.'</strong><span>'.$imic_property_price.'</span></div>';
+        endif;
+        echo '<a href="'.get_permalink(get_the_ID()).'" class="btn btn-primary btn-block">'.__('Details','framework').'</a>';
+        echo '<div class="hero-agent">';
+        $post_author_id = get_post_field( 'post_author', get_the_ID() );
+        $userImg = esc_attr(get_the_author_meta('agent-image', $post_author_id)); 
+        if(!empty($userImg)):
+          echo '<img src="'.$userImg.'" alt="" class="hero-agent-pic"/>';
+        else:
+          echo '<img src="'. get_template_directory_uri() . '/images/default_agent.png" alt="" class="hero-agent-pic"/>';
+        endif;
+        echo '<a href="'.get_author_posts_url($post_author_id).'" class="hero-agent-contact" data-placement="left"  data-toggle="tooltip" title="" data-original-title="'.__('Contact Agent','framework').'"><i class="fa fa-envelope"></i></a>';
+        echo '</div></div>';
+        echo '</li>';
+      endwhile;
+      echo '</ul></div>';
+    endif;
+    wp_reset_query();
+    }
+  ?>
+  
+  <!-- Site Search Module -->
+  <?php   $output = '';
+  global $imic_options;
+  $search_home_blocks = $imic_options['search-home-blocks']['Enabled'];
+  if (count($search_home_blocks)>1):
+    foreach ($search_home_blocks as $key => $value) {
+      switch ($key) {
+        case 'property_type':
+          $args_terms = array('orderby' => 'count', 'hide_empty' => true);
+          $propertyterms = get_terms('property-type', $args_terms);
+          if (!empty($propertyterms)) {
+            $output.= '<div class="search-field"><label>'.__('Property Type', 'framework').'</label><select name="propery_type" class="form-control selectpicker">';
+            $output .='<option selected>' . __('Project Category', 'framework') . '</option>';
+            foreach ($propertyterms as $term) {
+              $term_name = $term->name;
+              $term_slug = $term->slug;
+              $output .="<option value='" . $term_slug . "'>" . $term_name . "</option>";
+            }
+            $output .="</select></div>";            
+          }
+          break;
                 case 'contract': $args_contract = array('orderby' => 'count', 'hide_empty' => true);
                         $property_contract_type_terms = get_terms('property-contract-type', $args_contract);
                         if (!empty($property_contract_type_terms)) {
@@ -264,13 +269,14 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
 	  if($Featured_List==1) { 
        echo '<div id="featured-properties">
         <div class="container">';
-            echo '<div class="row">
-            <div class="col-md-12">
-              <div class="block-heading">';
-            $imic_home_featured_heading=get_post_meta(get_the_ID(),'imic_home_featured_heading',true);
-            $imic_home_featured_heading=!empty($imic_home_featured_heading)?$imic_home_featured_heading:__('Featured Section Heading','framework');
-           echo '<h4><span class="heading-icon"><i class="fa fa-star"></i></span>'.$imic_home_featured_heading.'</h4>';
-           echo ' </div></div></div>'; 
+//            echo '<div class="row">
+//            <div class="col-md-12">
+//              <div class="block-heading">';
+//            $imic_home_featured_heading=get_post_meta(get_the_ID(),'imic_home_featured_heading',true);
+//            $imic_home_featured_heading=!empty($imic_home_featured_heading)?$imic_home_featured_heading:__('Featured Section Heading','framework');
+//           echo '<h4><span class="heading-icon"><i class="fa fa-star"></i></span>'.$imic_home_featured_heading.'</h4>';
+//           echo ' </div></div></div>';
+          echo '<h2>Featured Projects</h2>';
            query_posts(array('post_type'=>'property','post_status'=>'publish','posts_per_page'=>-1,'meta_query' => array(array('key' => 'imic_featured_property','value' => 1,'compare' => '=='),),)); 
 			  if(have_posts()): ?>
                               <?php $data_rtl = ($imic_options['enable_rtl'] == 1)?'data-rtl="rtl"':'';
@@ -325,7 +331,7 @@ $class = 'available';
 $class = 'navailable'; 
   }
 if(!empty($properties_amenities)){
-echo '<span class="'.$class.'"><i class="fa fa-check-square"></i> '.$properties_amenities.'</span>';
+echo '<span class="'.$class.'"><i class="fa fa-user"></i> '.$properties_amenities.'</span>';
 }}}
 $author_id = $post->post_author;
                           echo '</div>';

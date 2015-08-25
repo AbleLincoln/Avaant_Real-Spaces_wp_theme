@@ -58,7 +58,7 @@
 
 .navigation > ul > li:hover > a {
   border: 0!important;
-  padding: 15px 22px;
+  padding: 17.5px 22px;
   background-color: #F3F3F3;
 }
 
@@ -83,6 +83,14 @@
 
 .horiz-nav .dropdown-menu > li > a {
   padding: 3px 10px;
+}
+
+/*Homepage*/
+
+#featured-properties {
+  background-color: #F7FAFA;
+  padding: 25px 0;
+  border-bottom: 1px solid #D9D9DE;
 }
 
 /*Project Page*/
@@ -126,7 +134,7 @@
 }
 
 .avnt-seeking, .avnt-description {
-  margin-bottom: 70px;
+  margin-bottom: 40px;
 }
 
 span.available {
