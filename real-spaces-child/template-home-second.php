@@ -243,7 +243,7 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
 		  the_content();
 		  endwhile; endif;
 		  echo '</div></div></div></div>';
-          echo '<div class="main" role="main">';
+          echo '<div class="main" id="avnt-homepage" role="main">';
           echo '<div id="content" class="content full">';
           global $imic_options; 
           if(isset($imic_options['opt-slides'])){
@@ -315,34 +315,33 @@ echo '<div class="row"><ul class="owl-carousel owl-alt-controls" data-columns="4
                           }
                           echo imic_excerpt(10);
                           echo '<div class="avaant-roles"><h5>Seeking:</h5>'; 
-$amenity_array=array();
-$property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
-global $imic_options;		
-foreach($property_amenities as $properties_amenities_temp){
-if($properties_amenities_temp!='Not Selected'){
-array_push($amenity_array,$properties_amenities_temp);
-}}
-if(isset($imic_options['properties_amenities'])&&count($imic_options['properties_amenities'])>1){
-foreach($imic_options['properties_amenities'] as $properties_amenities){
- $am_name= strtolower(str_replace(' ','',$properties_amenities));
-if(in_array($properties_amenities, $amenity_array)){
-$class = 'available';
-}else{
-$class = 'navailable'; 
-  }
-if(!empty($properties_amenities)){
-echo '<span class="'.$class.'"><i class="fa fa-user"></i> '.$properties_amenities.'</span>';
-}}}
-$author_id = $post->post_author;
+                            $amenity_array=array();
+                            $property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
+                            global $imic_options;		
+                            foreach($property_amenities as $properties_amenities_temp){
+                            if($properties_amenities_temp!='Not Selected'){
+                            array_push($amenity_array,$properties_amenities_temp);
+                            }}
+                            if(isset($imic_options['properties_amenities'])&&count($imic_options['properties_amenities'])>1){
+                            foreach($imic_options['properties_amenities'] as $properties_amenities){
+                             $am_name= strtolower(str_replace(' ','',$properties_amenities));
+                            if(in_array($properties_amenities, $amenity_array)){
+                            $class = 'available';
+                            }else{
+                            $class = 'navailable'; 
+                              }
+                            if(!empty($properties_amenities)){
+                            echo '<span class="'.$class.'"><i class="fa fa-user"></i> '.$properties_amenities.'</span>';
+                            }}}
+                            $author_id = $post->post_author;
                           echo '</div>';
-
                           echo '</div>';
                           }echo '</li>';  endwhile; 
                           echo '</ul></div>';
                           endif; wp_reset_query();
                           echo '</div>
-                          </div><div class="spacer-40"></div>';
-                          } echo '<div class="container">'; 
+                          </div>';
+                          } echo '<div class="container avnt-hidden">'; 
                         $Recent_List = get_post_meta(get_the_ID(),'imic_home_recent_section',true); 
                         $sidebar = get_post_meta(get_the_ID(),'imic_select_sidebar_from_list',false); 
                          $class = (empty($sidebar)||!is_active_sidebar($sidebar[0]))?12:9;
@@ -431,7 +430,7 @@ $author_id = $post->post_author;
                        echo '</ul>';
                       endif;
                       echo '</div></div>';
-             } 
+             }
 //            -- Start Sidebar --
              if(!empty($sidebar)&&is_active_sidebar($sidebar[0])) { 
                       echo '<div class="sidebar right-sidebar col-md-3">';
@@ -468,5 +467,31 @@ echo '<ul class="owl-carousel owl-alt-controls" data-columns="4" data-autoplay="
                                 echo '<li class="item"> <img src="'.$userImgSrc.'" alt=""></li>';  
                                     } endwhile; echo '</ul></div>';
                             endif; wp_reset_query();
-                            echo '</div>'; } echo '</div>'; 
+                            echo '</div>'; } echo '</div>'; ?>
+
+                    <div id="avnt-about" class="container">
+                      <h2>Avaant is simple</h2>
+                      <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                          <h3>1</h3>
+                          <p>
+                            It all starts when you sign-up and build your profile. With Avaant, your profile is more than a resume, it's a portfolio of your ambitions, personality, and passions.
+                          </p>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                          <h3>2</h3>
+                          <p>
+                            Using your profile, discover exciting ideas and projects around you. Apply for and join the positions you love.
+                          </p>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                          <h3>3</h3>
+                          <p>
+                            Have an idea? Create a project page and showcase your vision. Display what you are comfortable with and decide who and what skills are needed to help realize your goal.
+                          </p>
+                        </div>
+                      </div>
+                      </div>
+
+<?php
                             get_footer(); ?>

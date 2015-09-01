@@ -27,7 +27,11 @@
 ------------------------------------------------------- */
 /*General*/
 
-.avaant-hidden, #additionalinfo, .navailable, .middle-header, .badges, .images-count {
+body {
+  overflow-x: hidden;
+}
+
+.avaant-hidden, .avnt-hidden, #additionalinfo, .navailable, .badges, .images-count {
   display: none!important;
 }
 
@@ -50,6 +54,12 @@
     .main-menu-wrapper > .container > div > div {
       min-height: 0;
     }
+
+@media (min-width: 993px) {
+  .middle-header {
+    display: none;
+  }
+}
 
 .navigation > ul > li > a {
   border: none;
@@ -87,10 +97,48 @@
 
 /*Homepage*/
 
+#avnt-homepage #content {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
 #featured-properties {
   background-color: #F7FAFA;
   padding: 25px 0;
   border-bottom: 1px solid #D9D9DE;
+}
+
+#avnt-about {
+  width: 100%;
+  background-color: #900;
+  padding-top: 30px;
+  padding-bottom: 45px;
+}
+
+#avnt-about h2 {
+  margin: 0 auto 0 auto;
+  color: #fff;
+  width: 226px;
+}
+
+#avnt-about .row {
+  padding: 0 30px;
+}
+
+#avnt-about .row div.col-md-4 {
+  padding: 0 35px;
+}
+
+#avnt-about .row h3 {
+  width: 26px;
+  margin: auto;
+  font-size: 60px;
+  color: #ffcc00;
+}
+
+#avnt-about .row p {
+  color: #fff;
+  font-size: 15px;
 }
 
 /*Project Page*/
@@ -181,6 +229,10 @@ ul.share-buttons {
 
 /*Create page*/
 
+.avnt-create > #content > .container {
+  padding: 0 10%;
+}
+
 .avnt-create .avnt-box {
   text-align: center;
   margin-bottom: 25px;
@@ -189,4 +241,23 @@ ul.share-buttons {
 
 .avnt-create .avnt-box h1 {
   margin-bottom: 0px;
+}
+
+form .row {
+  background-color: #ddd;
+  padding-top: 19px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+form .row:nth-child(4) {
+  padding-bottom: 19px;
+}
+
+form h3 {
+  color: #990000;
+}
+
+form .btn-group.form-control {
+  height: 32px;
 }
