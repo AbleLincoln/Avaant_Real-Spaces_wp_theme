@@ -670,6 +670,45 @@ $meta_boxes[] = array(
             'desc' => __('Contact email for this project', 'framework'),
             'type' => 'text',
           ),
+        //Hacker yes/no?
+          array(
+            'name' => __('Hacker?', 'framework'),
+            'id' => 'avnt_hacker',
+            'desc' => __('Looking for a Hacker?', 'framework'),
+            'type' => 'checkbox',
+          ),
+        //Hacker skills
+          array(
+            'name' => __('Hacker skills', 'framework'),
+            'id' => 'avnt_hacker_text',
+            'type' => 'text',
+          ),
+        //Hustler yes/no?
+          array(
+            'name' => __('Hustler?', 'framework'),
+            'id' => 'avnt_hustler',
+            'desc' => __('Looking for a Hustler?', 'framework'),
+            'type' => 'checkbox',
+          ),
+        //Hustler skills
+          array(
+            'name' => __('Hustler skills', 'framework'),
+            'id' => 'avnt_hustler_text',
+            'type' => 'text',
+          ),
+        //Creative yes/no?
+          array(
+            'name' => __('Hacker?', 'framework'),
+            'id' => 'avnt_creative',
+            'desc' => __('Looking for a Creative?', 'framework'),
+            'type' => 'checkbox',
+          ),
+        //Creative skills
+          array(
+            'name' => __('Creative skills', 'framework'),
+            'id' => 'avnt_creative_text',
+            'type' => 'text',
+          ),
       )
 );
 /* Testimonial Meta Box
