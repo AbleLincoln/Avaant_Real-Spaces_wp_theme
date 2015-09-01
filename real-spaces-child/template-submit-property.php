@@ -15,7 +15,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
     $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']);
     $msg = '';
     $flag = 0;
-    $property_address_value = $property_title = $property_pin = $property_amenities_value = $property_area_value = $property_baths_value = $property_beds_value = $property_city_value = $property_parking_value = $property_price_value = $Property_Id = $property_contract_type_value = $property_type_value = $property_content = $property_sights_value = $othertextonomies = $city_type_value = $avnt_contact_email = '';
+    $property_address_value = $property_title = $property_pin = $property_amenities_value = $property_area_value = $property_baths_value = $property_beds_value = $property_city_value = $property_parking_value = $property_price_value = $Property_Id = $property_contract_type_value = $property_type_value = $property_content = $property_sights_value = $othertextonomies = $city_type_value = $avnt_contact_email = $avnt_hacker = $avnt_hacker_text = $avnt_hustler = $avnt_hustler_text = $avnt_creative = $avnt_creative_text ='';
     if (get_query_var('site')) {
         $Property_Id = get_query_var('site');
         $property_title = get_the_title($Property_Id);
@@ -32,6 +32,12 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
         $property_sights_value = get_post_meta($Property_Id, 'imic_property_sights', false);
         $property_amenities_per = $property_amenities_value;
         $avnt_contact_email = get_post_meta($Property_Id, 'imic_project_email', true);
+        $avnt_hacker = get_post_meta($Property_Id, 'avnt_hacker', true);
+        $avnt_hacker_text = get_post_meta($Property_Id, 'avnt_hacker_text', true);
+        $avnt_hustler = get_post_meta($Property_Id, 'avnt_hustler', true);
+        $avnt_hustler_text = get_post_meta($Property_Id, 'avnt_hustler_text', true);
+        $avnt_creative = get_post_meta($Property_Id, 'avnt_creative', true);
+        $avnt_creative_text = get_post_meta($Property_Id, 'avnt_creative_text', true);
         $type = wp_get_object_terms($Property_Id, 'property-type', array('fields' => 'ids'));
         if (!empty($type)) {
             $term = get_term($type[0], 'property-type');
@@ -90,6 +96,12 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
             $property_type_value = $_POST['type'];
         }
             $avnt_contact_email = $_POST['email'];
+            $avnt_hacker = $_POST['hacker'];
+            $avnt_hacker_text = $_POST['hacker_text'];
+            $avnt_hustler = $_POST['hustler'];
+            $avnt_hustler_text = $_POST['hustler_text'];
+            $avnt_creative = $_POST['creative'];
+            $avnt_creative_text = $_POST['creative_text'];
         if (isset($_POST['textonomies_city']) && !empty($_POST['textonomies_city'])) {
             $reverce_data = array_reverse($_POST['textonomies_city']);
             foreach ($reverce_data as $textonomies_city) {
@@ -252,7 +264,13 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                 if (!empty($additional_info_option_enable['2']) == 1) {
                     wp_set_object_terms($pid, $property_type_value, 'property-type');
                 }
-                  update_post_meta($pid, 'imic_project_email', $avnt_contact_email);
+                update_post_meta($pid, 'imic_project_email', $avnt_contact_email);
+                update_post_meta($pid, 'avnt_hacker', $avnt_hacker);
+                update_post_meta($pid, 'avnt_hacker_text', $avnt_hacker_text);
+                update_post_meta($pid, 'avnt_hustler', $avnt_hustler);
+                update_post_meta($pid, 'avnt_hustler_text', $avnt_hustler_text);
+                update_post_meta($pid, 'avnt_creative', $avnt_creative);
+                update_post_meta($pid, 'avnt_creative_text', $avnt_creative_text);
                 update_post_meta($pid, 'imic_property_custom_city', $property_custom_city);
                 $city_for_update = get_term_by('slug', $city_type_value, 'city-type');
                 $term_array = array();
@@ -300,6 +318,12 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                 $property_sights_value = get_post_meta($Property_Id, 'imic_property_sights', false);
                 $property_amenities_per = $property_amenities_value;
                 $avnt_contact_email = get_post_meta($Property_Id, 'imic_project_email', true);
+                $avnt_hacker = get_post_meta($Property_Id, 'avnt_hacker', true);
+                $avnt_hacker_text = get_post_meta($Property_Id, 'avnt_hacker_text', true);
+                $avnt_hustler = get_post_meta($Property_Id, 'avnt_hustler', true);
+                $avnt_hustler_text = get_post_meta($Property_Id, 'avnt_hustler_text', true);
+                $avnt_creative = get_post_meta($Property_Id, 'avnt_creative', true);
+                $avnt_creative_text = get_post_meta($Property_Id, 'avnt_creative_text', true);
                 $type = wp_get_object_terms($Property_Id, 'property-type', array('fields' => 'ids'));
                 if (!empty($type)) {
                     $term = get_term($type[0], 'property-type');
@@ -390,34 +414,25 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
           <div class="container">
             <div class="page">
               <form id="add-property" action="#submit-property" method="post" enctype="multipart/form-data">
-              <div class="row">
-                <div class="col-md-12 avnt-box">
+              
+                <div class="avnt-box">
                   <h1>Create</h1>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-7">
-                  
-<!--
-                    <div class="block-heading" id="details">
-                      <a href="#additionalinfo" class="btn btn-sm btn-default pull-right">
-                        <?php _e('Additional Info ', 'framework'); ?><i class="fa fa-chevron-down"></i></a>
-                      <h4><span class="heading-icon"><i class="fa fa-home"></i></span><?php _e('Project Details', 'framework'); ?></h4>
-                    </div>
--->
+
+
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <h3>Project Name</h3>
                       </div>
-                      <div class="col-md-9">
+                      <div class="col-md-8">
                         <input name="title" value="<?php echo $property_title; ?>" type="text" class="form-control" placeholder="<?php _e('Project name', 'framework'); ?>">
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <h3>Industry</h3>
                       </div>
-                      <div class="col-md-9 submit-property-type">
+                      <div class="col-md-8 submit-property-type">
                         <?php
                           echo '<select name="type" class="form-control margin-0 selectpicker">';
                           echo '<option>' . __('Project category', 'framework') . '</option>';
@@ -435,17 +450,34 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-3">
-                        <h3>Description</h3>
+                      <div class="col-md-4">
+                        <h3>Your Pitch</h3>
                       </div>
-                      <div class="col-md-9 submit-description">
+                      <div class="col-md-8 submit-description">
                         <textarea name="description" style="resize:vertical" class="form-control margin-0" rows="10" cols="10" placeholder="<?php _e('Project Description', 'framework'); ?>"><?php echo $property_content; ?></textarea>
                       </div>
-                      <div class="col-md-12">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
                         <h3>Email</h3>
+                      </div>
+                      <div class="col-md-8">
                         <input name="email" value="<?php echo $avnt_contact_email; ?>" type="text" class="form-control" placeholder="<?php _e('Email', 'framework'); ?>">
                       </div>
                     </div>
+                    <div class="row">
+                      <h3 class="col-md-4">Need a hacker?</h3>
+                      <p class="col-md-1"><input name="hacker" type="checkbox" class="form-control">Yes/no?</p>
+                      <p class="col-md-7"><input name="hacker_text" type="text" class="form-control">Specific skills</p>
+                      <h3 class="col-md-4">Need a hustler?</h3>
+                      <p class="col-md-1"><input name="hustler" type="checkbox" class="form-control">Yes/no?</p>
+                      <p class="col-md-7"><input name="hustler_text" type="text" class="form-control">Specific skills</p>
+                      <h3 class="col-md-4">Need a creative?</h3>
+                      <p class="col-md-1"><input name="creative" type="checkbox" class="form-control">Yes/no?</p>
+                      <p class="col-md-7"><input name="creative_text" type="text" class="form-control">Specific skills</p>
+                    </div>
+
+<!--
                     <div class="row">
                       <div class="col-md-3">
                         <h3>Skills seeking</h3>
@@ -485,6 +517,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                       </div>
                       </div>
                     </div>
+-->
                   
                   <?php
                             if ($msg != '') {
@@ -494,8 +527,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                                 //echo "<div id=\"message\"><div class=\"alert alert-success\">".__('Successfully Added Property','framework')."</div></div>"; 
                             }
                             ?>
-                </div>
-                <div class="col-md-5">
+
                   <div class="row">
                     <div class="col-md-12 col-sm-12">
                       <label>
@@ -532,8 +564,7 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                         <input id="filePhotoMulti" type="file" name="sightMulti[]" multiple onChange="previewMultiPhotos();">
                     </div>
                   </div>
-                </div>
-              </div>
+
               <div class="text-align-center" id="submit-property">
                       <?php
                                     $current_user_id = $current_user->ID;
