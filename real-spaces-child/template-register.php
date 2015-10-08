@@ -46,7 +46,7 @@ $redirect_login=!empty($redirect_login)?$redirect_login:  home_url();
                                         <div class="checkbox">
                                             <input type="checkbox" checked="checked" value="true" name="rememberme" id="rememberme" class="checkbox">
                                             <?php _e('Remember Me!','framework'); ?>
-                                                <?php echo '<a href="'.imic_get_template_url('template-reset_password.php').'" title="'.__('Forget Password','framework').'">'.__('Forget Password','framework').'</a>'; ?>
+                                                <?php echo '<a href="'.imic_get_template_url('template-reset_password.php').'" title="'.__('I forgot my password','framework').'">'.__('I forgot my password','framework').'</a>'; ?>
                                         </div>
                                         <input class="submit_button btn btn-primary button2" type="submit" value="<?php _e('Login Now','framework'); ?>" name="submit">
                                         <?php wp_nonce_field( 'ajax-login-nonce', 'security' ); ?>
@@ -54,7 +54,7 @@ $redirect_login=!empty($redirect_login)?$redirect_login:  home_url();
                                 </form>
                             </div>
                             <?php } 
-/* Manage Register For
+/* Manage Register Form
 ========================*/
 if ($pageLayout == 1 || $pageLayout == 3) { ?>
                                 <div class="col-md-4 col-sm-4 register-form">
@@ -76,7 +76,7 @@ $redirect_register=(!empty($redirect_register))?$redirect_register:  home_url();
                                                     </option>
                                                 </select>
                                             </div>
-                                            <br>
+                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                                 <input type="text" name="username" id="username" class="form-control" placeholder="<?php _e('Username','framework'); ?>">
@@ -95,6 +95,13 @@ $redirect_register=(!empty($redirect_register))?$redirect_register:  home_url();
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
                                                 <input type="password" name="pwd2" id="pwd2" class="form-control" placeholder="<?php _e('Repeat Password','framework') ?>">
+                                            </div>
+                                            <br>
+                                            <div class="input-group">
+                                              <p>Are you a...</p>
+                                              <input type="checkbox" name="hacker" id="hacker" value="hacker">Hacker<br>
+                                              <input type="checkbox" name="hustler" id="hustler" value="hustler">Hustler<br>
+                                              <input type="checkbox" name="creative" id="creative" value="creative">Creative<br>
                                             </div>
                                             <br>
                                             <input type="hidden" name="image_path" id="image_path" value="<?php echo get_template_directory_uri(); ?>">

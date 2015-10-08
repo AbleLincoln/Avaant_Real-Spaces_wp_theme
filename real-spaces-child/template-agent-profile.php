@@ -17,9 +17,12 @@ if (!empty($_POST['action'])) {
 	$agentTWTLink = esc_sql(trim($_POST['twt-link']));
 	$agentGPLink = esc_sql(trim($_POST['gp-link']));
 	$agentMSGLink = esc_sql(trim($_POST['msg-link']));
-	 $agentRole = esc_sql(trim($_POST['change_role_member']));
-	$agentDataKeys = array('mobile-phone', 'work-phone', 'fb-link', 'twt-link', 'gp-link', 'msg-link','role');
-	$agentDataValues = array($agentMobileNo, $agentWorkNo, $agentFBLink, $agentTWTLink, $agentGPLink, $agentMSGLink,$agentRole);
+    $agentRole = esc_sql(trim($_POST['change_role_member']));
+    $agentHacker = esc_sql(trim($_POST['hacker']));
+    $agentHustler = esc_sql(trim($_POST['hustler']));
+    $agentCreative = esc_sql(trim($_POST['creative']));
+	$agentDataKeys = array('mobile-phone', 'work-phone', 'fb-link', 'twt-link', 'gp-link', 'msg-link','role', 'hacker', 'hustler', 'creative');
+	$agentDataValues = array($agentMobileNo, $agentWorkNo, $agentFBLink, $agentTWTLink, $agentGPLink, $agentMSGLink,$agentRole, $agentHacker, $agentHustler, $agentCreative);
 	foreach (array_combine($agentDataKeys, $agentDataValues) as $agentKey => $agentValue) {
 		update_user_meta($user_ID, $agentKey, $agentValue);
                }
@@ -203,6 +206,34 @@ get_currentuserinfo();
                                     <input type="text" value="<?php echo esc_attr(get_the_author_meta('msg-link', $user_ID)); ?>" name="msg-link" id="msg-link" class="form-control" placeholder="<?php _e('Message','framework'); ?>"> 	
                               </div>
                           </div>
+                      </div>
+                        
+                      <div class="row">
+                        <h4>Your Talent</h4>
+                        <div class="col-md-4">
+                          <h5>Hacker</h5>
+                          <input type="checkbox" name="hacker"
+                                 <?php if (get_the_author_meta('hacker', $user_ID)=='hacker') { ?> 
+                                    checked="checked"
+                                 <?php }?> 
+                                 value="hacker">
+                        </div>
+                        <div class="col-md-4">
+                          <h5>Hustler</h5>
+                          <input type="checkbox" name="hustler"
+                                 <?php if (get_the_author_meta('hustler', $user_ID)=='hustler') { ?> 
+                                    checked="checked"
+                                 <?php }?> 
+                                 value="hustler">
+                        </div>
+                        <div class="col-md-4">
+                          <h5>Creative</h5>
+                          <input type="checkbox" name="creative"
+                                 <?php if (get_the_author_meta('creative', $user_ID)=='creative') { ?> 
+                                    checked="checked"
+                                 <?php }?> 
+                                 value="creative">
+                        </div>
                       </div>
                      <div class="text-align-center" id="submit-property">
                     <button type="submit" name="submit" class="btn btn-primary btn-lg cus_submit"><i class="fa fa-check"></i><?php _e(' Update','framework'); ?></button>
