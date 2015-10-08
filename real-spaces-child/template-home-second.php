@@ -85,17 +85,19 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
     foreach ($search_home_blocks as $key => $value) {
       switch ($key) {
         case 'property_type':
+          $output .= '<span>I want to work for a </span>';
           $args_terms = array('orderby' => 'count', 'hide_empty' => true);
           $propertyterms = get_terms('property-type', $args_terms);
           if (!empty($propertyterms)) {
-            $output.= '<div class="search-field"><label>'.__('Property Type', 'framework').'</label><select name="propery_type" class="form-control selectpicker">';
-            $output .='<option selected>' . __('Project Category', 'framework') . '</option>';
+            $output.= '<div class="search-field"><label class="avnt-hidden">'.__('Property Type', 'framework').'</label><select name="propery_type" class="form-control selectpicker">';
+            $output .='<option>' . __(' ', 'framework') . '</option>';
             foreach ($propertyterms as $term) {
               $term_name = $term->name;
               $term_slug = $term->slug;
               $output .="<option value='" . $term_slug . "'>" . $term_name . "</option>";
             }
-            $output .="</select></div>";            
+            $output .="</select></div>";
+            $output .= "<span> startup.</span>";
           }
           break;
                 case 'contract': $args_contract = array('orderby' => 'count', 'hide_empty' => true);
@@ -221,7 +223,7 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
 							echo $output;
 							
 							echo '</div><div class="col-md-4 search-buttons"><div class="search-button"> <button type="submit" class="btn btn-primary btn-block btn-lg"><i class="fa fa-search"></i> '.__('Search','framework').' </button> </div>';
-							echo '<div class="search-button"> <a href="#" id="ads-trigger" class="btn btn-default btn-block"><i class="fa fa-plus"></i> <span>'.__('Advanced','framework').'</span></a> </div></div>';
+							echo '<div class="search-button avnt-hidden"> <a href="#" id="ads-trigger" class="btn btn-default btn-block"><i class="fa fa-plus"></i> <span>'.__('Advanced','framework').'</span></a> </div></div>';
 							?>
                              </div>
                 </form>
@@ -306,7 +308,8 @@ echo '<div class="row"><ul class="owl-carousel owl-alt-controls" data-columns="4
 								   $sl .= $sa->name.$conc; $num++; }
                           if(true){
                           echo '<div class="property-info">';
-                            echo '<h4><a href="'.get_permalink().'">'.get_the_title().'</a>'.imicPropertyId(get_the_ID()).'</h4>'; 
+                            echo '<h4><a href="'.get_permalink().'">'.get_the_title().'</a>'.imicPropertyId(get_the_ID()).'</h4>';
+                            
                           if(!empty($imic_property_site_city)){
                             echo '<a class="accent-color" data-original-title="'.$sl.'" data-toggle="tooltip" style="cursor:default; text-decoration:none;" href="javascript:void(0);"><span class="location">'.$imic_property_site_city.'</span></a><br>';  
                           }
@@ -314,7 +317,23 @@ echo '<div class="row"><ul class="owl-carousel owl-alt-controls" data-columns="4
                               echo '<div class="price"><strong>'.$currency_symbol.'</strong><span>'.$imic_property_price.'</span></div>';
                           }
                           echo imic_excerpt(10);
-                          echo '<div class="avaant-roles"><h5>Seeking:</h5>'; 
+                          
+                          echo '<div class="avnt-home-seeking"><h5>Seeking:</h5>';
+                            $avnt_hacker = get_post_meta(get_the_ID(), 'avnt_hacker', true);
+                            $avnt_hustler = get_post_meta(get_the_ID(), 'avnt_hustler', true);
+                            $avnt_creative = get_post_meta(get_the_ID(), 'avnt_creative', true);
+                            if($avnt_hacker) {
+                              echo '<p><i class="fa fa-code"></i> Hacker</p><br>';
+                            }
+                            if($avnt_hustler) {
+                              echo '<p><i class="fa fa-line-chart"></i> Hustler</p><br>';
+                            }
+                            if($avnt_creative) {
+                              echo '<p><i class="fa fa-paint-brush"></i>  Creative</p><br>';
+                            }
+                          echo '</div>';
+                            
+                          echo '<div class="avnt-hidden"><h5>Seeking:</h5>';
                             $amenity_array=array();
                             $property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
                             global $imic_options;		
@@ -470,7 +489,7 @@ echo '<ul class="owl-carousel owl-alt-controls" data-columns="4" data-autoplay="
                             echo '</div>'; } echo '</div>'; ?>
 
                     <div id="avnt-about" class="container">
-                      <h2>Avaant is simple</h2>
+                      <h2>Avaant is simple.</h2>
                       <div class="row">
                         <div class="col-md-4 col-sm-4">
                           <h3>1</h3>
