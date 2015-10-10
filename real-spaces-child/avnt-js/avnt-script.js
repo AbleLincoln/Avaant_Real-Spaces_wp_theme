@@ -7,8 +7,8 @@ jQuery(document).ready(function($) {
   setTimeout(searchFlip, 0);
   
   function searchFlip() {
-    var $searchBox = $( 'div.search-field' ).find( 'button' );
-    var numOptions = $( 'div.search-field select' ).children().length;
+    var $searchBox = $( 'header div.search-field' ).find( 'button' );
+    var numOptions = $( 'header div.search-field select' ).children().length;
     console.log( numOptions );
     
     
@@ -17,13 +17,13 @@ jQuery(document).ready(function($) {
       if(index > numOptions) { index = 2 };
       
       $searchBox.children( 'span.searchWord' ).remove();
-      var searchWord = $( 'div.search-field select option:nth-child(' + index + ')').text();
+      var searchWord = $( 'header div.search-field select option:nth-child(' + index + ')').text();
       var $searchWord = $( '<span class="searchWord">' + searchWord + '</span>');
       $searchWord.hide();
       $searchWord.prependTo( $searchBox ).slideDown();
       
-      $( 'div.search-field select' ).val( searchWord.toLowerCase() ).change();
-      console.log( $('div.search-field select').val() );
+      $( 'header div.search-field select' ).val( searchWord.toLowerCase() ).change();
+      console.log( $('header div.search-field select').val() );
       //console.log(searchWord);
       //console.log(index);
       setTimeout(function() {

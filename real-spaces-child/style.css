@@ -118,6 +118,71 @@ body {
   padding: 3px 10px;
 }
 
+/*Search module*/
+
+header div.col-md-6 {
+  border-left: 1px solid #ddd;
+}
+
+header .site-search-module {
+  bottom: 0!important;
+  position: relative;
+  margin-top: 3px;
+}
+
+header .site-search-module .container {
+  width: 100%;
+}
+
+header .site-search-module .site-search-module-inside {
+  padding: 0;
+  border: 0;
+  background: #fff;
+}
+
+header .site-search-module form .row {
+  background-color: #fff;
+  padding-top: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+header .site-search-module form .col-md-4, header .site-search-module form .col-md-8 {
+  padding: 0;
+}
+
+header .site-search-module .search-fields > span {
+  font-size: 18px;
+}
+
+header .site-search-module .search-fields .search-field {
+  height: 35px;
+  width: 30%;
+  margin-top: 5px;
+}
+
+header .site-search-module .search-fields .search-field button {
+  height: 35px;
+}
+
+header .site-search-module .search-fields .search-field span.searchWord {
+  font-size: 18px;
+}
+
+header .site-search-module .search-buttons .search-button {
+  float: left;
+}
+
+header .site-search-module-inside .search-button .btn {
+  color: #900;
+  background-color: #fff;
+  border: 1px solid #990000;
+  text-shadow: none;
+  box-shadow: none;
+  font-weight: normal;
+  padding: 10px 0;
+}
+
 /*Homepage*/
 
 /*Search module*/

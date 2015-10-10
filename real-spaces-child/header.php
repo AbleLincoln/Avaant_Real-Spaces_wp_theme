@@ -152,8 +152,13 @@ $header_style='style="background-color: '.$imic_options['header_background_color
             <div class="main-menu-wrapper">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-4">
                     <nav class="navigation">
+                      <h1 class="avnt-logo">
+                        <a href="http://avaant.co" title="Avaant">
+                          <img src="http://avaant.co/wp-content/uploads/2015/09/Screen-Shot-2015-09-01-at-3.00.08-PM.png" alt="Logo">
+                        </a>
+                      </h1>
                       <?php if(!empty($menu_locations['primary-menu'])){
 			  /* Display Header Primary Menu
 			  ===========================================*/
@@ -178,7 +183,166 @@ $header_style='style="background-color: '.$imic_options['header_background_color
                     </nav>
                   </div>
                   
-                  <div class="col-md-4 col-sm-6 pull-right">
+                    <!-- Site Search Module -->
+  <?php   $output = '';
+  global $imic_options;
+  $search_home_blocks = $imic_options['search-home-blocks']['Enabled'];
+  if (count($search_home_blocks)>1):
+    foreach ($search_home_blocks as $key => $value) {
+      switch ($key) {
+        case 'property_type':
+          $output .= '<span>I want to work for a </span>';
+          $args_terms = array('orderby' => 'count', 'hide_empty' => true);
+          $propertyterms = get_terms('property-type', $args_terms);
+          if (!empty($propertyterms)) {
+            $output.= '<div class="search-field"><label class="avnt-hidden">'.__('Property Type', 'framework').'</label><select name="propery_type" class="form-control selectpicker">';
+            $output .='<option>' . __(' ', 'framework') . '</option>';
+            foreach ($propertyterms as $term) {
+              $term_name = $term->name;
+              $term_slug = $term->slug;
+              $output .="<option value='" . $term_slug . "'>" . $term_name . "</option>";
+            }
+            $output .="</select></div>";
+            $output .= "<span> startup.</span>";
+          }
+          break;
+                case 'contract': $args_contract = array('orderby' => 'count', 'hide_empty' => true);
+                        $property_contract_type_terms = get_terms('property-contract-type', $args_contract);
+                        if (!empty($property_contract_type_terms)) {
+                            $output.= '<div class="search-field"><label>'.__('Contract Type', 'framework').'</label><select name="propery_contract_type" class="form-control selectpicker">';
+                            $output .='<option selected>' . __('Contract', 'framework') . '</option>';
+                            foreach ($property_contract_type_terms as $term) {
+                                $term_name = $term->name;
+                                $term_slug = $term->slug;
+                                $output .="<option value='" . $term_slug . "'>" . $term_name . "</option>";
+                            }
+                            $output .="</select></div>";
+                           
+                        }
+                break;
+                case 'location': $imic_country_wise_city = imic_get_multiple_city();
+                        if (!empty($imic_country_wise_city)) {
+                            $output .='<div class="search-field"><label>'.__('State', 'framework').'</label><select name="propery_location" class="form-control selectpicker">
+                          <option selected>' . __('State', 'framework') . '</option>';
+                            foreach ($imic_country_wise_city as $key => $value) {
+								if(is_int($key)) { $output .= '<optgroup label="'.$value.'">'; }
+								else {
+                                $output .="<option value='" . $key . "'>" . $value . "</option>"; }
+                            }
+                            $output .='</select></div>';
+                        }
+                break;
+                case 'baths':
+                         $output .= '<div class="search-field"><label>' . __('Min Baths', 'framework') . '</label>
+                              <select name="baths" class="form-control selectpicker">';
+                         $output .='<option selected>' . __('Any', 'framework') . '</option>';
+                            $baths_options = $imic_options['properties_baths'];
+    						foreach ($baths_options as $baths) {
+                                $output .= "<option value='" . $baths . "'>" . $baths . "</option>";
+                            }
+                         $output .='</select></div>';
+                break;
+                case 'city':
+                        $args_c = array('orderby' => 'count', 'hide_empty' => true);
+                        $terms = get_terms(array('city-type'), $args_c);
+                        if (!empty($terms)) {
+                            $output .= '<div class="search-field"><label>'.__('City', 'framework').'</label><select name="property_city" class="form-control selectpicker">
+                    <option selected>' . __('City', 'framework') . '</option>';
+                            foreach ($terms as $term_data) {
+                                $output .= "<option value='" . $term_data->slug . "'>" . $term_data->name . "</option>";
+                            }
+                            $output .='</select></div>';
+                        }
+                break;
+                case 'beds':
+                        $output .= '<div class="search-field"><label>' . __('Min Beds', 'framework') . '</label>
+                                <select name="beds" class="form-control selectpicker">';
+                        $output .='<option selected>' . __('Any', 'framework') . '</option>';
+                        $beds_options = $imic_options['properties_beds'];
+    					foreach ($beds_options as $beds) {
+                            $output .= "<option value='" . $beds . "'>" . $beds . "</option>";
+                        }
+                        $output .='</select></div>';
+                break;
+                case 'price':
+                        $output .= '<div class="search-field"><label>' . __('Min Price', 'framework') . '</label>
+                                <select name="min_price" class="form-control selectpicker">';
+                        $output .='<option selected>' . __('Any', 'framework') . '</option>';
+                        $m_price_value = $imic_options['properties_price_range'];
+                        foreach ($m_price_value as $price_value) {
+                            $output .= "<option value='" . $price_value . "'>" . $currency_symbol . " " . $price_value . "</option>";
+                        }
+                        $output .='</select></div>';
+                        $output .= '<div class="search-field">
+                            <label>' . __('Max Price', 'framework') . '</label>
+                            <select name="max_price" class="form-control selectpicker">';
+                        $output .='<option selected>' . __('Any', 'framework') . '</option>';
+                        $max_price_value = $imic_options['properties_price_range'];
+                        foreach ($max_price_value as $price_value) {
+                            $output .= "<option value='" . $price_value . "'>" . $currency_symbol . " " . $price_value . "</option>";
+                        }
+                        $output .='</select>
+                            </div>';
+                    break;
+                    case 'area':
+                        $output .= '<div class="search-field">
+                                <label>' . __('Min Area (Sq Ft)', 'framework') . '</label>
+                                <input type="text" name="min_area" class="form-control input-lg" placeholder="' . __('Any', 'framework') . '">
+                            </div>
+                            <div class="search-field">
+                                <label>' . __('Max Area (Sq Ft)', 'framework') . '</label>
+                                <input type="text" name="max_area" class="form-control input-lg" placeholder="' . __('Any', 'framework') . '">
+                            </div>';
+                    break;
+                    case 'search_by':
+                        $output .= '<div class="search_by">
+                            <div class="search-field">
+                                <label>' . __('Search By', 'framework') . '</label>
+                                <select name="search_by" class="form-control selectpicker">';
+                        $output .='<option selected>' . __('Search By', 'framework') . '</option>';
+                        $output .= "<option value='Id'>" . __('Id', 'framework') . "</option>";
+                        $output .= "<option value='Address'>" . __('Address', 'framework') . "</option>";
+                        $output .= "<option value='Pincode'>" . __('Pincode', 'framework') . "</option>";
+                        $output .='</select>
+                            </div>
+                            <div class="search-field">';
+                        $output .='<label>' . __('Keyword', 'framework') . '</label>
+                             	<input type="text" name="search_by_keyword" class="form-control input-lg search_by_keyword" placeholder="' . __('Please enter ', 'framework') . '">
+                            </div>
+                            </div>';
+                    break;
+                }
+            }
+	
+	
+	
+?>
+  <div class="col-md-6">
+    <div class="site-search-module">
+        <div class="container">
+            <div class="site-search-module-inside">
+                <form method="get" action="<?php echo home_url(); ?>/">
+                    <input type="hidden" class="form-control" name="s" id="s" value="<?php _e('Search1', 'framework'); ?>" />
+                    <div class="row">
+                    
+                            <?php
+                            echo '<div class="col-md-8 search-fields">';
+							echo $output;
+							
+							echo '</div><div class="col-md-4 search-buttons"><div class="search-button"> <button type="submit" class="btn btn-primary btn-block btn-lg"><i class="fa fa-search"></i> '.__('Search','framework').' </button> </div>';
+							echo '<div class="search-button avnt-hidden"> <a href="#" id="ads-trigger" class="btn btn-default btn-block"><i class="fa fa-plus"></i> <span>'.__('Advanced','framework').'</span></a> </div></div>';
+							?>
+                             </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+         
+    <?php endif; ?>
+  </div>
+                  
+                  <div class="col-md-2 col-sm-6 pull-right">
                   <?php if($imic_options['enable-top-header-login-dropdown']==1){ ?>
                     <ul class="horiz-nav pull-right">
                       <li class="dropdown">
