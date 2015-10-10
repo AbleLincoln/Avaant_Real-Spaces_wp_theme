@@ -211,6 +211,8 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
 	
 	
 ?>
+<!--  remove body search bar-->
+  <?php if(false) { ?>
     <div class="site-search-module">
         <div class="container">
             <div class="site-search-module-inside">
@@ -230,7 +232,7 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
             </div>
         </div>
     </div>
-    
+  <?php } ?>  
          
     <?php endif; ?>
     </div>
