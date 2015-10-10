@@ -484,6 +484,7 @@ if (!function_exists('imic_page_banner')) {
 }
 /* Agent Register Funtion
   ================================================== */
+if(!function_exists('imic_agent_register')) {
 function imic_agent_register() {
 	if(!$_POST) exit;
 	// Email address verification, do not edit.
@@ -571,8 +572,10 @@ function imic_agent_register() {
 	endif;
     die();
 }
+
 add_action('wp_ajax_nopriv_imic_agent_register', 'imic_agent_register');
 add_action('wp_ajax_imic_agent_register', 'imic_agent_register');
+}
 /* INSERT ATTACHMENT
   ================================================== */
 if(!function_exists('sight')) {
