@@ -423,7 +423,7 @@ ul.share-buttons {
 
 .page-id-459 div.col-md-12 h4 {
   padding: 0 100px;
-  color: #fff;
+  color: #000;
 }
 
 .page-id-459 div.col-md-12 h4:first-child {
@@ -474,7 +474,7 @@ div.avnt-create {
   margin-bottom: 0px;
 }
 
-form .row {
+.avnt-create form .row {
   background-color: #fff;
   padding-top: 19px;
   border-radius: 0px;
