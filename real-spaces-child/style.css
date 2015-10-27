@@ -45,8 +45,8 @@ body {
   border-bottom: 2px solid #3F5765;
 }
 
-div.site-showcase .page-header {
-  background-image: none;
+div.site-showcase, div.site-showcase .page-header {
+  background-image: none!important;
   background-color: #990000;
 }
 
@@ -417,7 +417,7 @@ ul.share-buttons {
 }
 
 .page-id-459 div.col-md-12 {
-  background-color: #990000;
+  background-color: #fff;
   padding: 0;
 }
 
@@ -432,15 +432,15 @@ ul.share-buttons {
 
 .page-id-459 div.col-md-12 h3 {
   margin: auto;
-  color: #fff;
+  color: #000;
 }
 
 .page-id-459 div.col-md-12 h3 a {
-  color: #fc0;
+  color: #900;
 }
 
 .page-id-459 div.col-md-12 h3 a:hover {
-  color: #fff;
+  color: #fc0;
 }
 
 .page-id-459 div.col-md-12 div.share-bar {
@@ -455,6 +455,10 @@ ul.share-buttons {
 }
 
 /*Create page*/
+
+div.avnt-create {
+  background-color: #990000;
+}
 
 .avnt-create > #content > .container {
   padding: 0 10%;
@@ -471,10 +475,12 @@ ul.share-buttons {
 }
 
 form .row {
-  background-color: #ddd;
+  background-color: #fff;
   padding-top: 19px;
-  border-radius: 3px;
+  border-radius: 0px;
   margin-bottom: 15px;
+  border: 1px solid #990000;
+  box-shadow: 10px 10px #000;
 }
 
 form .row:nth-child(4) {
