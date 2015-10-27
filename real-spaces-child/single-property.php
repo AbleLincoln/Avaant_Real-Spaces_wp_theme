@@ -125,6 +125,20 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
           <div class="avnt-seeking">
             <h3>Seeking</h3>
             <div>
+              <?php
+                $avnt_hacker = get_post_meta(get_the_ID(), 'avnt_hacker', true);
+                $avnt_hustler = get_post_meta(get_the_ID(), 'avnt_hustler', true);
+                $avnt_creative = get_post_meta(get_the_ID(), 'avnt_creative', true);
+                if($avnt_hacker) {
+                  echo '<span class="available"><i class="fa fa-code"></i> Hacker</span><br>';
+                }
+                if($avnt_hustler) {
+                  echo '<span class="available"><i class="fa fa-line-chart"></i> Hustler</span><br>';
+                }
+                if($avnt_creative) {
+                  echo '<span class="available"><i class="fa fa-paint-brush"></i>  Creative</span><br>';
+                }
+              ?>
               <?php 
                 $amenity_array=array();
                 $property_amenities = get_post_meta(get_the_ID(),'imic_property_amenities',true);
@@ -167,7 +181,7 @@ $currency_symbol = imic_get_currency_symbol($imic_options['currency-select']); ?
         </div>
       </div>
 
-      <div class="row">
+      <div class="row avnt-hidden">
         <div class="col-md-7">
           <div class="single-property">
             

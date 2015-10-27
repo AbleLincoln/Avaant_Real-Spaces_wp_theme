@@ -280,7 +280,7 @@ $sliderEffect = get_post_meta($homeID,'imic_slider_effects',true);
 //            $imic_home_featured_heading=!empty($imic_home_featured_heading)?$imic_home_featured_heading:__('Featured Section Heading','framework');
 //           echo '<h4><span class="heading-icon"><i class="fa fa-star"></i></span>'.$imic_home_featured_heading.'</h4>';
 //           echo ' </div></div></div>';
-          echo '<h2>Featured Projects</h2>';
+          echo '<h2>Projects</h2>';
            query_posts(array('post_type'=>'property','post_status'=>'publish','posts_per_page'=>-1,'meta_query' => array(array('key' => 'imic_featured_property','value' => 1,'compare' => '=='),),)); 
 			  if(have_posts()): ?>
                               <?php $data_rtl = ($imic_options['enable_rtl'] == 1)?'data-rtl="rtl"':'';

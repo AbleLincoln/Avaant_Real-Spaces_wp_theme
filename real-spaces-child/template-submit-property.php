@@ -134,16 +134,16 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
         if (($city_type_value == 'other') || ($city_type_value == 'city')) {
             $city_type_value = '';
         }
-        if (!empty($property_details_option_required['1']) == 1 && !empty($property_details_option_enable['1']) == 1) {
-            if (empty($property_title)) {
-                $msg = __("Please enter project name.", "framework") . "<br/>";
-            }
-        }
-        if (!empty($property_details_option_required['6']) == 1 && !empty($property_details_option_enable['6']) == 1) {
-            if (empty($property_content)) {
-                $msg .= __("Please enter project description.", "framework") . "<br/>";
-            }
-        }
+//        if (!empty($property_details_option_required['1']) == 1 && !empty($property_details_option_enable['1']) == 1) {
+//            if (empty($property_title)) {
+//                $msg = __("Please enter project name.", "framework") . "<br/>";
+//            }
+//        }
+//        if (!empty($property_details_option_required['6']) == 1 && !empty($property_details_option_enable['6']) == 1) {
+//            if (empty($property_content)) {
+//                $msg .= __("Please enter project description.", "framework") . "<br/>";
+//            }
+//        }
         if (!empty($property_details_option_required['2']) == 1 && !empty($property_details_option_enable['2']) == 1) {
             if (empty($property_address_value)) {
                 $msg .= __("Please enter property address.", "framework") . "<br/>";
@@ -174,11 +174,11 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                 $msg .= __("Please select property parking.", "framework") . "<br/>";
             }
         }
-        if (!empty($additional_info_option_required['2']) == 1 && !empty($additional_info_option_enable['2']) == 1) {
-            if ($property_type_value == __('Project category', 'framework')) {
-                $msg .= __("Please select project category.", "framework") . "<br/>";
-            }
-        }
+//        if (!empty($additional_info_option_required['2']) == 1 && !empty($additional_info_option_enable['2']) == 1) {
+//            if ($property_type_value == __('Project category', 'framework')) {
+//                $msg .= __("Please select project category.", "framework") . "<br/>";
+//            }
+//        }
         if (!empty($additional_info_option_required['3']) == 1 && !empty($additional_info_option_enable['3']) == 1) {
             if ($property_contract_type_value == __('Contract Type', 'framework')) {
                 $msg .= __("Please select property contract type.", "framework") . "<br/>";
@@ -189,14 +189,14 @@ if ((user_can($current_user, "agent") ) || (user_can($current_user, "administrat
                 $msg .= __("Please enter property area.", "framework") . "<br/>";
             }
         }
-        if (empty($property_sights_value)) {
-            if (!file_exists($_FILES['sightMulti']['tmp_name'][0]) && empty($_FILES['sightMulti']['tmp_name'][0])) {
-                $msg .= __("Please upload file.", "framework");
-            }
-        }
-        if (empty($avnt_contact_email)) {
-          $msg .= __("Please enter email.", "framework");
-        }
+//        if (empty($property_sights_value)) {
+//            if (!file_exists($_FILES['sightMulti']['tmp_name'][0]) && empty($_FILES['sightMulti']['tmp_name'][0])) {
+//                $msg .= __("Please upload file.", "framework");
+//            }
+//        }
+//        if (empty($avnt_contact_email)) {
+//          $msg .= __("Please enter email.", "framework");
+//        }
         if ($msg == '') {
             if (get_query_var('site')) {
                 $post = array(
