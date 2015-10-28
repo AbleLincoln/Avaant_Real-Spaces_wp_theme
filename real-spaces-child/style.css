@@ -494,3 +494,17 @@ form h3 {
 form .btn-group.form-control {
   height: 32px;
 }
+
+/*Discover*/
+
+ul.avnt-discover {
+  list-style-type: none;
+  position: relative;
+  width: 100%;
+}
+
+ul.avnt-discover li {
+  height: 450px;
+  margin: 10px;
+  padding: 0;
+}

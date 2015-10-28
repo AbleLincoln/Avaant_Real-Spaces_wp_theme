@@ -452,6 +452,7 @@ echo '<div class="row"><ul class="owl-carousel owl-alt-controls" data-columns="4
                       endif;
                       echo '</div></div>';
              }
+
 //            -- Start Sidebar --
              if(!empty($sidebar)&&is_active_sidebar($sidebar[0])) { 
                       echo '<div class="sidebar right-sidebar col-md-3">';
