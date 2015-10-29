@@ -152,7 +152,7 @@ $header_style='style="background-color: '.$imic_options['header_background_color
             <div class="main-menu-wrapper">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <nav class="navigation">
                       <h1 class="avnt-logo">
                         <a href="http://avaant.co" title="Avaant">
@@ -317,7 +317,7 @@ $header_style='style="background-color: '.$imic_options['header_background_color
 	
 	
 ?>
-  <div class="col-md-6">
+  <div class="col-md-5">
     <div class="site-search-module">
         <div class="container">
             <div class="site-search-module-inside">
