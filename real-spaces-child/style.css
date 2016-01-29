@@ -40,6 +40,11 @@ body {
   display: none!important;
 }
 
+p, h1, h2, h3, h4, h5, h6, blockquote, span {
+  font-family: Helvetica;
+  font-weight: 200;
+}
+
 .avnt-box {
 /*  border-top: 2px solid #3F5765;*/
 /*  border-bottom: 2px solid #3F5765;*/
@@ -302,6 +307,42 @@ li.property-block > a:first-child {
   line-height: 24px;
 }
 
+#avnt-info-banners .row {
+}
+
+#avnt-info-banners .row .col-md-6.words {
+  padding-top: 10%;
+  text-align: center;
+}
+
+#avnt-info-banners .row .col-md-6.words ul {
+  display: inline-block;
+  margin: 0;
+  margin-left: 45px;
+}
+
+#avnt-info-banners .row .col-md-6.words ul li {
+  text-align: left;
+  line-height: 27px;
+  font-size: 15px;
+}
+
+#avnt-info-banners .row .col-md-6.img {
+  padding: 0;
+}
+
+#avnt-info-banners .row ul {
+  list-style: none;
+}
+
+#avnt-partners {
+  padding: 4% 20%;
+  text-align: center;
+  border-top: 2px solid #eee;
+}
+
+
+
 /*Login/Signup*/
 
 .page-id-361 div.page > div.row > div.col-md-4:first-child {
@@ -514,4 +555,8 @@ ul.avnt-discover li {
 
 body.tribe-theme-child-real-spaces-child div.site-showcase div.container {
   display: none;
+}
+
+.tribe-events-loop .tribe-events-event-meta {
+  font-size: 16px;
 }

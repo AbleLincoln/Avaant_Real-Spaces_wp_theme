@@ -513,7 +513,60 @@ echo '<ul class="owl-carousel owl-alt-controls" data-columns="4" data-autoplay="
                           </p>
                         </div>
                       </div>
-                      </div>
+                    </div>
+
+  <div id="avnt-info-banners">
+    <div class="row">
+      <div class="col-md-6 words">
+        <h2>Avaant is <span style="color: #990000">students</span></h2>
+        <ul>
+          <li>Discover exciting ideas</li>
+          <li>Become a part of groundbreaking projects</li>
+        </ul>
+      </div>
+      <div class="col-md-6 img">
+        <img src="http://avaant.co/wp-content/uploads/2015/11/students.jpg" />
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 img">
+        <img src="http://avaant.co/wp-content/uploads/2015/11/entreps.jpg" />
+      </div>
+      <div class="col-md-6 words">
+        <h2>Avaant is <span style="color: #990000">entrepreneurs</span> & <span style="color: #990000">creatives</span></h2>
+        <ul>
+          <li>Showcase your passion and build relationships</li>
+          <li>Get recognized by mentors and investors</li>
+          <li>Connect with talent at USC</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6 words">
+        <h2>Avaant is <span style="color: #990000">analytics</span></h2>
+        <ul>
+          <li>Get early feedback and market validation</li>
+          <li>Share your projects easily through all social channels</li>
+          <li>Increase brand awareness and generate buzz for your company</li>
+        </ul>
+      </div>
+      <div class="col-md-6 img">
+        <img src="http://avaant.co/wp-content/uploads/2015/11/anals.jpg" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="avnt-partners">
+    <div class="col-md-12"><h2>Partners</h2></div>
+    <div class="col-md-6">
+      <img src="http://avaant.co/wp-content/uploads/2015/11/blackstone.png" style="height: 200px; float: right"/>
+    </div>
+    <div class="col-md-6">
+      <img src="http://avaant.co/wp-content/uploads/2015/11/sep.png" style="float: left"/>
+    </div>
+  </div>
 
 <?php
                             get_footer(); ?>
